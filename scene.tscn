@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cgrvo2f81b5j"]
 
 [ext_resource type="Script" path="res://Scripts/BeesManager.gd" id="1_86lkx"]
-[ext_resource type="PackedScene" path="res://Objects/game_ui.tscn" id="1_rbdpo"]
+[ext_resource type="PackedScene" uid="uid://b1d1r1dq3pp15" path="res://Objects/game_ui.tscn" id="1_rbdpo"]
 [ext_resource type="Script" path="res://Scripts/CameraController.gd" id="1_wwsk7"]
 [ext_resource type="Texture2D" uid="uid://4kj685im4sft" path="res://Textures/reticule.png" id="3_7vrma"]
 [ext_resource type="Script" path="res://Scripts/Reticule.gd" id="4_kaefo"]
@@ -18,6 +18,8 @@ z_index = 50
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["cameras"]]
 script = ExtResource("1_wwsk7")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Camera2D" groups=["CanvasModulate"]]
 
 [node name="RoomManager" type="Node2D" parent="." node_paths=PackedStringArray("bm") groups=["RoomManager"]]
 script = ExtResource("7_ucf1y")

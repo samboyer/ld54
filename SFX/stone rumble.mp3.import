@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bx4jxg8a2ssto"
+path="res://.godot/imported/stone rumble.mp3-dfcd62ac1f56c884577b2ec83c0efad1.mp3str"
+
+[deps]
+
+source_file="res://SFX/stone rumble.mp3"
+dest_files=["res://.godot/imported/stone rumble.mp3-dfcd62ac1f56c884577b2ec83c0efad1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

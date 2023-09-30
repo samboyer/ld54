@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dqxaa6edepon8"
+path="res://.godot/imported/buzz small.mp3-c6a9212a5fd45e772e0fb752dc91ff30.mp3str"
+
+[deps]
+
+source_file="res://SFX/buzz small.mp3"
+dest_files=["res://.godot/imported/buzz small.mp3-c6a9212a5fd45e772e0fb752dc91ff30.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

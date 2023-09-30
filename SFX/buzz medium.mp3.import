@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bsycxe37pk4eb"
+path="res://.godot/imported/buzz medium.mp3-9fbeb223e1a2bb5e13f7f3d282b935d1.mp3str"
+
+[deps]
+
+source_file="res://SFX/buzz medium.mp3"
+dest_files=["res://.godot/imported/buzz medium.mp3-9fbeb223e1a2bb5e13f7f3d282b935d1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

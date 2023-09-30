@@ -17,6 +17,9 @@ var SHOOT_PULL_INWARD: float = 0.5
 @export var attack_cooldown: float = 0.05
 @export var attack_bees: int = 1
 @export var attack_jitter: float = 100.0
+@export var iframes: float = 0.2
+var invulnerable: bool = false
+var _iframes: float = 0.0
 var _attacking: bool = false
 var _attack_cooldown_counter: float = 0.0
 
@@ -62,7 +65,6 @@ func find_free_bee() -> Bee:
             return b
     return null
 
-
 func fire_a_bee():
     var fired_bee: Bee = find_free_bee()
     if fired_bee != null:
@@ -74,9 +76,16 @@ func fire_a_bee():
                 b.position = lerp(b.position, centre_of_mass, SHOOT_PULL_INWARD)
                 # b.velocity = (centre_of_mass - b.position).normalized() * 100.0
 
+func damage():
+    invulnerable = true
+    _iframes = iframes
+
 # # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
     reticule.target = find_target()
+
+    _iframes = max(_iframes - delta, 0.0)
+    invulnerable = _iframes > 0.0
 
     _attack_cooldown_counter = max(_attack_cooldown_counter - delta, 0.0)
     if reticule.target != null and _attacking and _attack_cooldown_counter <= 0:

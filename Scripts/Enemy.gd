@@ -12,10 +12,13 @@ var _direction: Vector2 = Vector2(0, 0)
 
 var velocity: Vector2 = Vector2.ZERO
 
+var bm: BeesManager
+
 func _ready():
     choose_target()
     _state = 2
     _state_cooldown = charge_time + Util.rand_range_float(-jitter / 2, jitter / 2)
+    bm = get_tree().get_first_node_in_group('BeesManager')
 
     super()
 
@@ -56,5 +59,6 @@ func _process(delta):
     super(delta)
 
 func _on_area_2d_body_entered(body: Node2D):
-    if body is Bee:
+    if body is Bee and not bm.invulnerable:
         body.kill()
+        bm.damage()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cgrvo2f81b5j"]
+[gd_scene load_steps=9 format=3 uid="uid://cgrvo2f81b5j"]
 
 [ext_resource type="Script" path="res://Scripts/BeesManager.gd" id="1_86lkx"]
+[ext_resource type="Script" path="res://Scripts/CameraController.gd" id="1_wwsk7"]
 [ext_resource type="Texture2D" uid="uid://da4wenbvxckce" path="res://Textures/keyhole.png" id="2_ybfhk"]
 [ext_resource type="Script" path="res://Scripts/Key.gd" id="3_6y0jp"]
 [ext_resource type="Texture2D" uid="uid://bfx2onk2tucbc" path="res://Textures/key.png" id="4_3ioye"]
@@ -15,9 +16,12 @@ size = Vector2(109.375, 46.5)
 [node name="Node2D" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("1_wwsk7")
 
-[node name="BeesManager" type="Node2D" parent="."]
+[node name="BeesManager" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
 script = ExtResource("1_86lkx")
+attack_cooldown = 0.5
+camera = NodePath("../Camera2D")
 
 [node name="Keyhole" type="Area2D" parent="."]
 position = Vector2(172, -200)

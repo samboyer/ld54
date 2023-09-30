@@ -14,6 +14,8 @@ var _attack_cooldown_counter: float = 0.0
 
 var particles: Node
 
+var damageCounterObj = preload("res://Objects/DamageCounter.tscn")
+
 func _ready():
     particles = get_node("Particles")
     print(particles)
@@ -34,7 +36,14 @@ func attack(target: Targetable):
     position = target.position
     velocity = dir * 10000
 
-    target.damage(base_damage)
+    var damage = base_damage
+
+    target.damage(damage)
+
+    var damageCounter = damageCounterObj.instantiate()
+    damageCounter.position = target.position + Vector2(Util.rand_range(-25, 25), Util.rand_range(-25, 25))
+    damageCounter.amount = damage
+    get_parent().add_child(damageCounter)
 
 func _process(delta):
     if attacking:

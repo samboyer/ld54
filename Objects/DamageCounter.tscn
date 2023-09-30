@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://dhge6eunw8red"]
+
+[ext_resource type="Script" path="res://Scripts/DamageCounter.gd" id="1_j3bil"]
+[ext_resource type="FontFile" uid="uid://bew83n532qq8x" path="res://Textures/Minimal5x7.ttf" id="1_joqlm"]
+
+[sub_resource type="Gradient" id="Gradient_3agi8"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.140449, 0.297753, 0.451311, 0.595506, 0.741573, 0.88015)
+colors = PackedColorArray(0.53, 0.53, 0.53, 1, 0.687221, 0.64032, 0, 1, 0.866667, 0.588235, 0.133333, 1, 0.768627, 0, 0.839216, 1, 0, 0, 1, 1, 0, 0.734135, 0.273604, 1, 0.85098, 0.0627451, 0.14902, 1)
+
+[sub_resource type="Curve" id="Curve_tngty"]
+min_value = 1.0
+max_value = 2.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.503362, 1), 0.0, 0.0, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_5wbut"]
+font = ExtResource("1_joqlm")
+outline_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_hkrur"]
+font = ExtResource("1_joqlm")
+
+[node name="DamageCounter" type="Node2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_j3bil")
+colour_gradient = SubResource("Gradient_3agi8")
+scale_curve = SubResource("Curve_tngty")
+
+[node name="LabelOutline" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = -13.0
+offset_right = 50.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_5wbut")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = -13.0
+offset_right = 50.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_hkrur")
+horizontal_alignment = 1
+vertical_alignment = 1

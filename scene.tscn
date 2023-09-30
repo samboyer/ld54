@@ -16,6 +16,7 @@ script = ExtResource("1_wwsk7")
 [node name="BeesManager" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
 script = ExtResource("1_86lkx")
 attack_cooldown = 0.5
+attack_jitter = 25.0
 camera = NodePath("../Camera2D")
 
 [node name="Reticule" type="Node2D" parent="BeesManager"]

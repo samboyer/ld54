@@ -2,11 +2,9 @@ class_name Bee
 extends CharacterBody2D
 
 
-var vel := Vector2(0,0)
 var maxspeed := 1000
-var accel := 10000
-
-var jitter: int = 100
+var accel := 8000
+var jitter: int = 50
 
 @export var attack_cooldown: float = 5.0
 var attacking: bool = false
@@ -34,7 +32,7 @@ func attack(target: Targetable):
 
     _attack_cooldown_counter = attack_cooldown
     position = target.position
-    vel = dir * 10000
+    velocity = dir * 10000
 
     target.damage(base_damage)
 
@@ -49,9 +47,8 @@ func _process(delta):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
     var mouse_pos: Vector2 = self.get_parent().get_local_mouse_position()
-    var dir = (mouse_pos - self.position).normalized() * accel
-    vel += dir * delta
-    vel += Vector2(Util.rand_range(-jitter, jitter), Util.rand_range(-jitter, jitter))
-    vel = vel.limit_length(maxspeed)
-    velocity = vel
+    var jitter_vector := Vector2(Util.rand_range(-jitter, jitter), Util.rand_range(-jitter, jitter))
+    var dir := (mouse_pos - self.position + jitter_vector).normalized() * accel
+    velocity += dir * delta
+    velocity = velocity.limit_length(maxspeed)
     move_and_slide()

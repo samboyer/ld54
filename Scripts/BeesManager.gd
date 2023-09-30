@@ -7,6 +7,8 @@ var beeObj = preload("res://Objects/bee.tscn")
 @export
 var NUM_BEES: int = 100
 
+var SHOOT_PULL_INWARD: float = 0.5
+
 var bees: Array = []
 
 @export var attack_cooldown: float = 0.05
@@ -33,6 +35,7 @@ var centre_of_mass:Vector2 = Vector2.ZERO
 
 func _input(event):
     if event.is_action_pressed("attack"):
+        _attack_cooldown_counter = 0.0
         _attacking = true
     elif event.is_action_released("attack"):
         _attacking = false
@@ -53,6 +56,18 @@ func find_free_bee() -> Bee:
             return b
     return null
 
+
+func fire_a_bee():
+    var fired_bee: Bee = find_free_bee()
+    if fired_bee != null:
+        fired_bee.attack(reticule.target)
+        camera.jitter(attack_jitter)
+        _attack_cooldown_counter = attack_cooldown
+        for b in bees:
+            if b != fired_bee:
+                b.position = lerp(b.position, centre_of_mass, SHOOT_PULL_INWARD)
+                # b.velocity = (centre_of_mass - b.position).normalized() * 100.0
+
 # # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
     reticule.target = find_target()
@@ -60,11 +75,7 @@ func _process(delta):
     _attack_cooldown_counter = max(_attack_cooldown_counter - delta, 0.0)
     if _attacking and _attack_cooldown_counter <= 0:
         for _i in range(attack_bees):
-            var bee: Bee = find_free_bee()
-            if bee != null:
-                bee.attack(reticule.target)
-                camera.jitter(attack_jitter)
-                _attack_cooldown_counter = attack_cooldown
+            fire_a_bee()
 
     centre_of_mass = Vector2.ZERO
     for b in bees:
@@ -72,5 +83,5 @@ func _process(delta):
     centre_of_mass /= NUM_BEES
     queue_redraw()
 
-func _draw():
-    draw_circle(centre_of_mass, 10, Color(1, 0, 0))
+# func _draw():
+#     draw_circle(centre_of_mass, 10, Color(1, 0, 0))

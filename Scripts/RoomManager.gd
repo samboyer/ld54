@@ -38,7 +38,7 @@ func finish_transition_to_next_room():
     current_room=next_room
     next_room=null
     for b in bm.bees:
-        b.position = Vector2(0,0)
+        b.position = Vector2(0,SCREEN_HEIGHT/2-16)
 
 
 # func _ready():
@@ -61,3 +61,8 @@ func _input(event):
         and event.pressed):
         load_next_room()
         start_transition_to_next_room()
+
+
+func _ready():
+    load_next_room()
+    finish_transition_to_next_room() # skip transition

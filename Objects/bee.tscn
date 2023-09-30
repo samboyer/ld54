@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Bee.gd" id="1_vujc5"]
 [ext_resource type="Texture2D" uid="uid://dk0xiq56t015x" path="res://Textures/bee.png" id="2_gjuv5"]
-[ext_resource type="Texture2D" uid="uid://bll4220pettl8" path="res://Textures/smoke.png" id="3_q7mnk"]
+[ext_resource type="Texture2D" uid="uid://dl1kvol6fnvf6" path="res://Textures/1x1_white.png" id="2_i507m"]
 
 [sub_resource type="Curve" id="Curve_f1sak"]
 min_value = 2.13163e-14
@@ -26,14 +26,16 @@ emitting = false
 amount = 100
 one_shot = true
 explosiveness = 1.0
-texture = ExtResource("3_q7mnk")
+texture = ExtResource("2_i507m")
 emission_shape = 3
 emission_rect_extents = Vector2(30, 30)
 spread = 180.0
 gravity = Vector2(2.08165e-12, 2.08165e-12)
-initial_velocity_max = 50.0
+initial_velocity_max = 25.0
 damping_min = 5.0
 damping_max = 5.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
 scale_amount_curve = SubResource("Curve_f1sak")
 color_ramp = SubResource("Gradient_kpvv1")
 

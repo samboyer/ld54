@@ -12,24 +12,20 @@ var jitter: int = 100
 var attacking: bool = false
 var _attack_cooldown_counter: float = 0.0
 
+@export var base_damage: int = 5
+
 var particles: Node
 
 func _ready():
     particles = get_node("Particles")
     print(particles)
 
-func attack(target: Vector2):
+func attack(target: Targetable):
     attacking = true
-    var dir: Vector2 = (target - self.position).normalized()
-    var centre: Vector2 = target - ((target - position) / 2)
-    var extent: float = (target - position).length() / 2
+    var dir: Vector2 = (target.position - position).normalized()
+    var centre: Vector2 = (position - target.position) / 2
+    var extent: float = (target.position - position).length() / 2
 
-    # Emit particles along the line segment from the bee to the target
-    #particles.emitting = false
-    #particles.direction = dir
-    #particles.position = self.position
-    #particles.one_shot = true
-    # Set rectangle to be the line segment from the bee to the target
     particles.position = centre
     particles.emission_rect_extents = Vector2(extent, 0)
     particles.rotation = dir.angle()
@@ -37,8 +33,10 @@ func attack(target: Vector2):
     particles.emitting = true
 
     _attack_cooldown_counter = attack_cooldown
-    position = target
+    position = target.position
     vel = dir * 10000
+
+    target.damage(base_damage)
 
 func _process(delta):
     if attacking:

@@ -6,7 +6,7 @@ var beeObj = preload("res://Objects/bee2.tscn")
 
 @export
 var STARTING_NUM_BEES: int = 100
-var num_bees:int=0
+var num_bees: int = 0
 
 
 @export
@@ -17,7 +17,8 @@ var SHOOT_PULL_INWARD: float = 0.5
 @export var attack_cooldown: float = 0.05
 @export var attack_bees: int = 1
 @export var attack_jitter: float = 100.0
-@export var iframes: float = 0.2
+@export var iframes: float = 0.1
+@export var attack_range: float = 250
 var invulnerable: bool = false
 var _iframes: float = 0.0
 var _attacking: bool = false
@@ -54,9 +55,10 @@ func find_target() -> Targetable:
     var target_distance: float = 10000
     var mouse_position: Vector2 = get_global_mouse_position()
     for node in get_tree().get_nodes_in_group("targetable"):
-        if node.targetable and node.global_position.distance_to(mouse_position) < target_distance:
+        var dist = node.global_position.distance_to(mouse_position)
+        if node.targetable and dist < attack_range and dist < target_distance:
             target = node
-            target_distance = node.global_position.distance_to(mouse_position)
+            target_distance = dist
     return target
 
 func find_free_bee() -> Bee:

@@ -6,7 +6,7 @@ var maxspeed := 1000
 var accel := 8000
 var jitter: int = 50
 
-@export var attack_cooldown: float = 1.0
+@export var attack_cooldown: float = 1
 var attacking: bool = false
 var _attack_cooldown_counter: float = 0.0
 
@@ -46,6 +46,7 @@ func attack(target: Targetable):
     particles.rotation = dir.angle()
 
     particles.emitting = true
+    particles.restart()
 
     _attack_cooldown_counter = attack_cooldown
     position = target.position

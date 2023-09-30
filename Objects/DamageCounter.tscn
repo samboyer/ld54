@@ -22,6 +22,7 @@ outline_size = 4
 font = ExtResource("1_joqlm")
 
 [node name="DamageCounter" type="Node2D"]
+z_index = 30
 scale = Vector2(3, 3)
 script = ExtResource("1_j3bil")
 colour_gradient = SubResource("Gradient_3agi8")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://liwkplx5rlx8"]
+[gd_scene load_steps=19 format=3 uid="uid://liwkplx5rlx8"]
 
 [ext_resource type="Texture2D" uid="uid://cpb1sbitd26h0" path="res://Textures/room_bg_1_without_door.png" id="1_lchdx"]
 [ext_resource type="Texture2D" uid="uid://bucmjw3k05p28" path="res://room_fg_1.png" id="2_mxec2"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://Objects/Keyhole.gd" id="7_effwv"]
 [ext_resource type="Texture2D" uid="uid://da4wenbvxckce" path="res://Textures/keyhole.png" id="7_gbfof"]
 [ext_resource type="PackedScene" uid="uid://dup1w8why8n0u" path="res://Objects/Enemy.tscn" id="8_d3y83"]
+[ext_resource type="PackedScene" uid="uid://dfos2w0cct7s5" path="res://Objects/Barrel.tscn" id="13_eml4w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_otlhh"]
 size = Vector2(97, 60)
@@ -131,6 +132,14 @@ position = Vector2(200, 89)
 
 [node name="Enemy2" parent="." instance=ExtResource("8_d3y83")]
 position = Vector2(-109, 191)
+enemy_type = 1
+
+[node name="Enemy3" parent="." instance=ExtResource("8_d3y83")]
+position = Vector2(58, 54)
+enemy_type = 2
+
+[node name="Barrel" parent="." instance=ExtResource("13_eml4w")]
+position = Vector2(-102, 30)
 
 [connection signal="area_entered" from="next level area" to="DOOR" method="_on_next_level_area_area_entered"]
 [connection signal="area_entered" from="Keyhole" to="Keyhole" method="_on_area_entered"]

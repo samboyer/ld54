@@ -1,5 +1,5 @@
 class_name Targetable
-extends Node2D
+extends CharacterBody2D
 
 @export var targetable: bool = true
 @export var health: int = 50

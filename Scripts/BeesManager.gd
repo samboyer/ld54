@@ -9,8 +9,6 @@ var NUM_BEES: int = 100
 
 var SHOOT_PULL_INWARD: float = 0.5
 
-var bees: Array = []
-
 @export var attack_cooldown: float = 0.05
 @export var attack_bees: int = 1
 @export var attack_jitter: float = 100.0
@@ -27,7 +25,6 @@ func _ready():
         var x = beeObj.instantiate()
         add_child(x)
         x.position = Vector2(randi() % 500 - 250, randi() % 500 - 250)
-        bees.append(x)
 
     reticule = find_child("Reticule")
 
@@ -51,7 +48,7 @@ func find_target() -> Targetable:
     return target
 
 func find_free_bee() -> Bee:
-    for b in bees:
+    for b in get_tree().get_nodes_in_group("bees"):
         if not b.attacking:
             return b
     return null
@@ -63,7 +60,7 @@ func fire_a_bee():
         fired_bee.attack(reticule.target)
         camera.jitter(attack_jitter)
         _attack_cooldown_counter = attack_cooldown
-        for b in bees:
+        for b in get_tree().get_nodes_in_group("bees"):
             if b != fired_bee:
                 b.position = lerp(b.position, centre_of_mass, SHOOT_PULL_INWARD)
                 # b.velocity = (centre_of_mass - b.position).normalized() * 100.0
@@ -73,12 +70,12 @@ func _process(delta):
     reticule.target = find_target()
 
     _attack_cooldown_counter = max(_attack_cooldown_counter - delta, 0.0)
-    if _attacking and _attack_cooldown_counter <= 0:
+    if reticule.target != null and _attacking and _attack_cooldown_counter <= 0:
         for _i in range(attack_bees):
             fire_a_bee()
 
     centre_of_mass = Vector2.ZERO
-    for b in bees:
+    for b in get_tree().get_nodes_in_group("bees"):
         centre_of_mass += b.position
     centre_of_mass /= NUM_BEES
     queue_redraw()

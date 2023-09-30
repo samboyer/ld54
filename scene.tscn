@@ -12,6 +12,12 @@
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("1_wwsk7")
 
+[node name="RoomManager" type="Node2D" parent="." node_paths=PackedStringArray("bm")]
+script = ExtResource("7_ucf1y")
+ROOM_TRANSITION_TIME_SECS = 1.0
+ROOM_PREFAB = ExtResource("8_em0jb")
+bm = NodePath("../BeesManager")
+
 [node name="BeesManager" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
 script = ExtResource("1_86lkx")
 attack_cooldown = 0.5
@@ -29,9 +35,3 @@ texture = ExtResource("3_7vrma")
 [node name="ReticuleInner" type="Sprite2D" parent="BeesManager/Reticule"]
 scale = Vector2(1.4, 1.4)
 texture = ExtResource("3_7vrma")
-
-[node name="RoomManager" type="Node2D" parent="." node_paths=PackedStringArray("bm")]
-script = ExtResource("7_ucf1y")
-ROOM_TRANSITION_TIME_SECS = 1.0
-ROOM_PREFAB = ExtResource("8_em0jb")
-bm = NodePath("../BeesManager")

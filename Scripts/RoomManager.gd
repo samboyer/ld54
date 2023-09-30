@@ -37,7 +37,7 @@ func finish_transition_to_next_room():
         current_room.queue_free()
     current_room=next_room
     next_room=null
-    for b in bm.bees:
+    for b in get_tree().get_nodes_in_group("bees"):
         b.position = Vector2(0,SCREEN_HEIGHT/2-16)
 
 

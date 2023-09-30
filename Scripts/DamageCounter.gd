@@ -1,4 +1,3 @@
-@tool
 extends Node2D
 
 # Colour gradient for amount
@@ -21,12 +20,9 @@ var life: float = 1.0
 func _ready():
     amount = amount
     life = lifetime
-    if is_inside_tree():
-        scale *= scale_curve.sample(amount / float(damage_max))
+    scale *= scale_curve.sample(amount / float(damage_max))
 
 func _process(delta):
-    if not is_inside_tree():
-        return
     life -= delta
     if life <= 0.0:
         queue_free()

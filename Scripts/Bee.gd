@@ -15,10 +15,23 @@ var _attack_cooldown_counter: float = 0.0
 var particles: Node
 
 var damageCounterObj = preload("res://Objects/DamageCounter.tscn")
+var beeGhostObj = preload("res://Objects/BeeGhost.tscn")
+
+var bm:BeesManager = null;
 
 func _ready():
+	self.add_to_group("bees")
 	particles = get_node("Particles")
-	print(particles)
+	bm = get_tree().get_first_node_in_group('BeesManager')
+
+# Called when the bee is killed
+func kill():
+	# TODO: spawn ghost, play death animation, etc
+	var beeGhost = beeGhostObj.instantiate()
+	beeGhost.initial_position = position
+	get_parent().add_child(beeGhost)
+	bm.num_bees-=1
+	queue_free()
 
 func attack(target: Targetable):
 	attacking = true

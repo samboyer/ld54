@@ -1,3 +1,4 @@
+class_name Room_Door
 extends Node2D
 
 @export
@@ -17,9 +18,11 @@ var door_opened:=false
 var door_anim_t:=0.0
 
 var camera=null
+var rm:RoomManager = null;
 
 func _ready():
 	camera = get_tree().get_first_node_in_group("cameras")
+	rm = get_tree().get_first_node_in_group('RoomManager')
 
 func start_door_open():
 	if door_opened:
@@ -44,7 +47,13 @@ func _process(delta):
 		if door_anim_t>=1:
 			end_door_open()
 
-func _input(event):
-	if (event is InputEventMouseButton
-		and event.pressed):
-		start_door_open()
+# func _input(event):
+#     if (event is InputEventMouseButton
+#         and event.pressed):
+#         start_door_open()
+
+
+func _on_next_level_area_area_entered(area):
+	print(area.name)
+	if door_opened:
+		rm.make_and_transition_to_room()

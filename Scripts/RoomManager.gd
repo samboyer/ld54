@@ -1,3 +1,4 @@
+class_name RoomManager
 extends Node
 
 
@@ -28,6 +29,7 @@ var room_transition_t:float=0
 func start_transition_to_next_room():
     room_transitioning=true
     room_transition_t=0
+    bm.visible=false
 
 func finish_transition_to_next_room():
     room_transitioning=false
@@ -39,6 +41,7 @@ func finish_transition_to_next_room():
     next_room=null
     for b in get_tree().get_nodes_in_group("bees"):
         b.position = Vector2(0,SCREEN_HEIGHT/2-16)
+    bm.visible=true
 
 
 # func _ready():
@@ -62,6 +65,9 @@ func _process(delta):
 #         load_next_room()
 #         start_transition_to_next_room()
 
+func make_and_transition_to_room():
+    load_next_room()
+    start_transition_to_next_room()
 
 func _ready():
     load_next_room()

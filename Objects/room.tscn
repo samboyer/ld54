@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://liwkplx5rlx8"]
+[gd_scene load_steps=18 format=3 uid="uid://liwkplx5rlx8"]
 
 [ext_resource type="Texture2D" uid="uid://cpb1sbitd26h0" path="res://Textures/room_bg_1_without_door.png" id="1_lchdx"]
 [ext_resource type="Texture2D" uid="uid://bucmjw3k05p28" path="res://room_fg_1.png" id="2_mxec2"]
@@ -9,8 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://bfx2onk2tucbc" path="res://Textures/key.png" id="5_ji04a"]
 [ext_resource type="Texture2D" uid="uid://ci1qd53jmqehh" path="res://Textures/room_bg_door_mask.png" id="6_dbn27"]
 [ext_resource type="Texture2D" uid="uid://c15csurjju7bp" path="res://Textures/key_highlihgt.png" id="6_ves8a"]
+[ext_resource type="Script" path="res://Objects/Keyhole.gd" id="7_effwv"]
 [ext_resource type="Texture2D" uid="uid://da4wenbvxckce" path="res://Textures/keyhole.png" id="7_gbfof"]
 [ext_resource type="PackedScene" uid="uid://dup1w8why8n0u" path="res://Objects/Enemy.tscn" id="8_d3y83"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_otlhh"]
+size = Vector2(97, 60)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8cwx"]
 size = Vector2(804, 41)
@@ -37,12 +41,20 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 scale = Vector2(4, 4)
 texture = ExtResource("2_mxec2")
 
-[node name="DOOR" type="Node2D" parent="."]
+[node name="next level area" type="Area2D" parent="."]
+position = Vector2(31, -134)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="next level area"]
+shape = SubResource("RectangleShape2D_otlhh")
+
+[node name="DOOR" type="Node2D" parent="." groups=["door"]]
 script = ExtResource("3_42c7e")
 DOOR_MOVE_CAMERA_SHAKE = 10.0
 DOOR_FINISH_CAMERA_SHAKE = 25.0
 
-[node name="RoomDoor" type="Sprite2D" parent="DOOR"]
+[node name="door front" type="Sprite2D" parent="DOOR"]
 z_index = -1001
 position = Vector2(16.968, -128.75)
 scale = Vector2(2, 2)
@@ -60,30 +72,33 @@ position = Vector2(6, -117)
 scale = Vector2(2, 2)
 texture = ExtResource("6_dbn27")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="ROOM COLLISION" type="StaticBody2D" parent="."]
 collision_layer = 3
 
-[node name="hwall" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="hwall" type="CollisionShape2D" parent="ROOM COLLISION"]
 position = Vector2(3, -277.5)
 shape = SubResource("RectangleShape2D_q8cwx")
 
-[node name="hwall2" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="hwall2" type="CollisionShape2D" parent="ROOM COLLISION"]
 position = Vector2(2.08165e-12, 320)
 shape = SubResource("RectangleShape2D_q8cwx")
 
-[node name="vwall" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="vwall" type="CollisionShape2D" parent="ROOM COLLISION"]
 position = Vector2(380, 2.08165e-12)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_n6f7x")
 
-[node name="vwall2" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="vwall2" type="CollisionShape2D" parent="ROOM COLLISION"]
 position = Vector2(-380, 2.08165e-12)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_n6f7x")
 
 [node name="Keyhole" type="Area2D" parent="."]
-position = Vector2(134, -122)
+position = Vector2(300, -122)
 scale = Vector2(1.5, 1.5)
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("7_effwv")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="Keyhole"]
@@ -95,11 +110,10 @@ texture = ExtResource("7_gbfof")
 position = Vector2(2.08165e-12, 2.08165e-12)
 shape = SubResource("RectangleShape2D_lkmme")
 
-[node name="Key" type="RigidBody2D" parent="."]
+[node name="Key" type="Area2D" parent="."]
 position = Vector2(-243, 108)
-collision_mask = 2
-input_pickable = true
-gravity_scale = 2.66454e-15
+collision_layer = 17
+collision_mask = 18
 script = ExtResource("4_mpkp7")
 tex_normal = ExtResource("5_ji04a")
 tex_hover = ExtResource("6_ves8a")
@@ -118,5 +132,8 @@ position = Vector2(200, 89)
 [node name="Enemy2" parent="." instance=ExtResource("8_d3y83")]
 position = Vector2(-109, 191)
 
+[connection signal="area_entered" from="next level area" to="DOOR" method="_on_next_level_area_area_entered"]
+[connection signal="area_entered" from="Keyhole" to="Keyhole" method="_on_area_entered"]
+[connection signal="body_entered" from="Keyhole" to="Keyhole" method="_on_body_entered"]
 [connection signal="mouse_entered" from="Key" to="Key" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Key" to="Key" method="_on_mouse_exited"]

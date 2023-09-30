@@ -21,6 +21,7 @@ var _attacking: bool = false
 var _attack_cooldown_counter: float = 0.0
 
 @export var camera: Camera2D
+@export var com_object: Area2D
 
 var reticule: Node2D
 
@@ -86,6 +87,9 @@ func _process(delta):
     for b in get_tree().get_nodes_in_group("bees"):
         centre_of_mass += b.position
     centre_of_mass /= num_bees
+    com_object.position = centre_of_mass
+
+
     label_hp.text = str(num_bees)
     # queue_redraw()
 

@@ -20,7 +20,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
     if target != null:
+        visible = true
         position = position.lerp(target.global_position, delta * speed)
+    else:
+        visible = false
 
     outer.rotation_degrees += delta * rotate_speed
     inner.rotation_degrees -= delta * rotate_speed

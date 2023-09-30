@@ -1,12 +1,12 @@
 extends RigidBody2D
 
 @export
-var tex_normal:Texture2D = null
+var tex_normal: Texture2D = null
 @export
-var tex_hover:Texture2D = null
+var tex_hover: Texture2D = null
 
 @export
-var bm:BeesManager = null
+var bm: BeesManager = null
 
 # Called when the node enters the scene tree for the first time.
 # func _ready():

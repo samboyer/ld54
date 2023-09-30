@@ -14,13 +14,13 @@ func _ready():
 	for i in range(NUM_BEES):
 		var x = beeObj.instantiate()
 		add_child(x)
-		x.position = Vector2(randi() % 1000 - 500, randi()%1000 - 500)
+		x.position = Vector2(randi() % 1000 - 500, randi() % 1000 - 500)
 		bees.append(x)
 
 var centre_of_mass:Vector2 = Vector2.ZERO
 
 # # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	centre_of_mass = Vector2.ZERO
 	for b in bees:
 		centre_of_mass += b.position

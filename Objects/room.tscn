@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=3 uid="uid://liwkplx5rlx8"]
+
+[ext_resource type="Texture2D" uid="uid://cpb1sbitd26h0" path="res://Textures/room_bg_1_without_door.png" id="1_lchdx"]
+[ext_resource type="Texture2D" uid="uid://bucmjw3k05p28" path="res://room_fg_1.png" id="2_mxec2"]
+[ext_resource type="Texture2D" uid="uid://dtjvuhl8jbai5" path="res://Textures/room_bg_door.png" id="3_d32jj"]
+[ext_resource type="Script" path="res://Scripts/Key.gd" id="4_mpkp7"]
+[ext_resource type="Texture2D" uid="uid://bfx2onk2tucbc" path="res://Textures/key.png" id="5_ji04a"]
+[ext_resource type="Texture2D" uid="uid://c15csurjju7bp" path="res://Textures/key_highlihgt.png" id="6_ves8a"]
+[ext_resource type="Texture2D" uid="uid://da4wenbvxckce" path="res://Textures/keyhole.png" id="7_gbfof"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q8cwx"]
+size = Vector2(804, 41)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6f7x"]
+size = Vector2(600, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lkmme"]
+size = Vector2(20, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2h5xq"]
+size = Vector2(109.375, 46.5)
+
+[node name="ROOM" type="Node2D"]
+
+[node name="RoomBg1" type="Sprite2D" parent="."]
+z_index = -1000
+scale = Vector2(4, 4)
+texture = ExtResource("1_lchdx")
+
+[node name="RoomFg1" type="Sprite2D" parent="."]
+z_index = 100
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(4, 4)
+texture = ExtResource("2_mxec2")
+
+[node name="RoomBgDoor" type="Sprite2D" parent="."]
+z_index = -1010
+position = Vector2(6, -119)
+scale = Vector2(2.4, 2.4)
+texture = ExtResource("3_d32jj")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 3
+
+[node name="hwall" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(3, -277.5)
+shape = SubResource("RectangleShape2D_q8cwx")
+
+[node name="hwall2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2.08165e-12, 320)
+shape = SubResource("RectangleShape2D_q8cwx")
+
+[node name="vwall" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(380, 2.08165e-12)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_n6f7x")
+
+[node name="vwall2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-380, 2.08165e-12)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_n6f7x")
+
+[node name="Keyhole" type="Area2D" parent="."]
+position = Vector2(134, -122)
+scale = Vector2(1.5, 1.5)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Keyhole"]
+z_index = -2
+scale = Vector2(2, 2)
+texture = ExtResource("7_gbfof")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Keyhole"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+shape = SubResource("RectangleShape2D_lkmme")
+
+[node name="Key" type="RigidBody2D" parent="."]
+position = Vector2(-243, 108)
+collision_mask = 2
+input_pickable = true
+gravity_scale = 2.66454e-15
+script = ExtResource("4_mpkp7")
+tex_normal = ExtResource("5_ji04a")
+tex_hover = ExtResource("6_ves8a")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Key"]
+scale = Vector2(8, 8)
+texture = ExtResource("5_ji04a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Key"]
+shape = SubResource("RectangleShape2D_2h5xq")
+
+[connection signal="mouse_entered" from="Key" to="Key" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Key" to="Key" method="_on_mouse_exited"]

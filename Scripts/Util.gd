@@ -5,3 +5,7 @@ func rand_range(min_val: int, max_val: int) -> int:
 
 func rand_range_float(min_val: float, max_val: float) -> float:
     return randf() * (max_val - min_val) + min_val
+
+func cubic_ease_out(t: float) -> float:
+    var f = (t - 1)
+    return f * f * f + 1

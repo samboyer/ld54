@@ -1,23 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cgrvo2f81b5j"]
+[gd_scene load_steps=5 format=3 uid="uid://cgrvo2f81b5j"]
 
 [ext_resource type="Script" path="res://Scripts/BeesManager.gd" id="1_86lkx"]
 [ext_resource type="Script" path="res://Scripts/CameraController.gd" id="1_wwsk7"]
-[ext_resource type="Texture2D" uid="uid://da4wenbvxckce" path="res://Textures/keyhole.png" id="2_ybfhk"]
-[ext_resource type="Script" path="res://Scripts/Key.gd" id="3_6y0jp"]
-[ext_resource type="Texture2D" uid="uid://bfx2onk2tucbc" path="res://Textures/key.png" id="4_3ioye"]
-[ext_resource type="Texture2D" uid="uid://c15csurjju7bp" path="res://Textures/key_highlihgt.png" id="5_lluhp"]
-[ext_resource type="Texture2D" uid="uid://bxgdqy6mjm0a4" path="res://Textures/room_bg_1.png" id="6_2j4aw"]
-[ext_resource type="Texture2D" uid="uid://bucmjw3k05p28" path="res://room_fg_1.png" id="7_m6bc0"]
-[ext_resource type="Texture2D" uid="uid://dtjvuhl8jbai5" path="res://Textures/room_bg_door.png" id="8_24ykt"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_61jf1"]
-size = Vector2(20, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tpo28"]
-size = Vector2(109.375, 46.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q8cwx"]
-size = Vector2(847, 98)
+[ext_resource type="Script" path="res://Scripts/RoomManager.gd" id="7_ucf1y"]
+[ext_resource type="PackedScene" uid="uid://liwkplx5rlx8" path="res://Objects/room.tscn" id="8_em0jb"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -29,78 +15,8 @@ script = ExtResource("1_86lkx")
 attack_cooldown = 0.5
 camera = NodePath("../Camera2D")
 
-[node name="Keyhole" type="Area2D" parent="."]
-position = Vector2(137, -126)
-scale = Vector2(1.5, 1.5)
-metadata/_edit_group_ = true
-
-[node name="Sprite2D2" type="Sprite2D" parent="Keyhole"]
-z_index = -2
-scale = Vector2(2, 2)
-texture = ExtResource("2_ybfhk")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Keyhole"]
-position = Vector2(2.08165e-12, 2.08165e-12)
-shape = SubResource("RectangleShape2D_61jf1")
-
-[node name="Key" type="RigidBody2D" parent="." node_paths=PackedStringArray("bm")]
-position = Vector2(-243, 108)
-collision_mask = 2
-input_pickable = true
-gravity_scale = 2.66454e-15
-script = ExtResource("3_6y0jp")
-tex_normal = ExtResource("4_3ioye")
-tex_hover = ExtResource("5_lluhp")
+[node name="RoomManager" type="Node2D" parent="." node_paths=PackedStringArray("bm")]
+script = ExtResource("7_ucf1y")
+ROOM_TRANSITION_TIME_SECS = 1.0
+ROOM_PREFAB = ExtResource("8_em0jb")
 bm = NodePath("../BeesManager")
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Key"]
-scale = Vector2(8, 8)
-texture = ExtResource("4_3ioye")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Key"]
-shape = SubResource("RectangleShape2D_tpo28")
-
-[node name="ROOM" type="Node2D" parent="."]
-metadata/_edit_group_ = true
-
-[node name="RoomBg1" type="Sprite2D" parent="ROOM"]
-z_index = -1000
-scale = Vector2(4, 4)
-texture = ExtResource("6_2j4aw")
-
-[node name="RoomFg1" type="Sprite2D" parent="ROOM"]
-z_index = 100
-position = Vector2(2.08165e-12, 2.08165e-12)
-scale = Vector2(4, 4)
-texture = ExtResource("7_m6bc0")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="ROOM"]
-collision_layer = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ROOM/StaticBody2D"]
-position = Vector2(-18.5, -306)
-shape = SubResource("RectangleShape2D_q8cwx")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="ROOM/StaticBody2D"]
-position = Vector2(-11, 350)
-shape = SubResource("RectangleShape2D_q8cwx")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="ROOM/StaticBody2D"]
-position = Vector2(-405, -90)
-rotation = 1.5708
-shape = SubResource("RectangleShape2D_q8cwx")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="ROOM/StaticBody2D"]
-position = Vector2(408, -76)
-rotation = 1.5708
-shape = SubResource("RectangleShape2D_q8cwx")
-
-[node name="RoomBgDoor" type="Sprite2D" parent="."]
-z_index = -10
-position = Vector2(-4, -137)
-scale = Vector2(3, 3)
-texture = ExtResource("8_24ykt")
-
-[connection signal="mouse_entered" from="Key" to="Key" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Key" to="Key" method="_on_mouse_exited"]

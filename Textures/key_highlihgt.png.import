@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c15csurjju7bp"
-path="res://.godot/imported/key_highlihgt.png-df535547a3a5949761152241f97e06e0.ctex"
+path="res://.godot/imported/key_highlihgt.png-3f518912380929b5edb8afc8837b2773.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://key_highlihgt.png"
-dest_files=["res://.godot/imported/key_highlihgt.png-df535547a3a5949761152241f97e06e0.ctex"]
+source_file="res://Textures/key_highlihgt.png"
+dest_files=["res://.godot/imported/key_highlihgt.png-3f518912380929b5edb8afc8837b2773.ctex"]
 
 [params]
 

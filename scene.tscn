@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgrvo2f81b5j"]
+[gd_scene load_steps=8 format=3 uid="uid://cgrvo2f81b5j"]
 
-[ext_resource type="Script" path="res://BeesManager.gd" id="2_gqdln"]
-[ext_resource type="Texture2D" uid="uid://da4wenbvxckce" path="res://keyhole.png" id="2_vra3p"]
-[ext_resource type="Script" path="res://Key.gd" id="3_tllqe"]
-[ext_resource type="Texture2D" uid="uid://bfx2onk2tucbc" path="res://key.png" id="4_4ios7"]
-[ext_resource type="Texture2D" uid="uid://c15csurjju7bp" path="res://key_highlihgt.png" id="5_wws15"]
+[ext_resource type="Script" path="res://Scripts/BeesManager.gd" id="1_86lkx"]
+[ext_resource type="Texture2D" uid="uid://da4wenbvxckce" path="res://Textures/keyhole.png" id="2_ybfhk"]
+[ext_resource type="Script" path="res://Scripts/Key.gd" id="3_6y0jp"]
+[ext_resource type="Texture2D" uid="uid://bfx2onk2tucbc" path="res://Textures/key.png" id="4_3ioye"]
+[ext_resource type="Texture2D" uid="uid://c15csurjju7bp" path="res://Textures/key_highlihgt.png" id="5_lluhp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61jf1"]
+size = Vector2(20, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tpo28"]
 size = Vector2(109.375, 46.5)
@@ -14,29 +17,36 @@ size = Vector2(109.375, 46.5)
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="BeesManager" type="Node2D" parent="."]
-script = ExtResource("2_gqdln")
+script = ExtResource("1_86lkx")
 
 [node name="Keyhole" type="Area2D" parent="."]
 position = Vector2(172, -200)
+scale = Vector2(1.5, 1.5)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="Keyhole"]
+z_index = -2
 scale = Vector2(2, 2)
-texture = ExtResource("2_vra3p")
+texture = ExtResource("2_ybfhk")
 
-[node name="Key" type="RigidBody2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Keyhole"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+shape = SubResource("RectangleShape2D_61jf1")
+
+[node name="Key" type="RigidBody2D" parent="." node_paths=PackedStringArray("bm")]
 position = Vector2(-243, 108)
 collision_mask = 2
 input_pickable = true
 gravity_scale = 2.66454e-15
-script = ExtResource("3_tllqe")
-tex_normal = ExtResource("4_4ios7")
-tex_hover = ExtResource("5_wws15")
+script = ExtResource("3_6y0jp")
+tex_normal = ExtResource("4_3ioye")
+tex_hover = ExtResource("5_lluhp")
+bm = NodePath("../BeesManager")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Key"]
 scale = Vector2(8, 8)
-texture = ExtResource("4_4ios7")
+texture = ExtResource("4_3ioye")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Key"]
 shape = SubResource("RectangleShape2D_tpo28")

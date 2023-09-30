@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://da4wenbvxckce"
-path="res://.godot/imported/keyhole.png-ea10335ac985c5c40f5b5b8113e11b63.ctex"
+path="res://.godot/imported/keyhole.png-31cc80c44f5b5394f55389d7dcba2bb9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://keyhole.png"
-dest_files=["res://.godot/imported/keyhole.png-ea10335ac985c5c40f5b5b8113e11b63.ctex"]
+source_file="res://Textures/keyhole.png"
+dest_files=["res://.godot/imported/keyhole.png-31cc80c44f5b5394f55389d7dcba2bb9.ctex"]
 
 [params]
 

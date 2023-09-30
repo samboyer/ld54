@@ -1,7 +1,8 @@
+class_name BeesManager
 extends Node2D
 
 @onready
-var beeObj = preload("res://bee.tscn")
+var beeObj = preload("res://Objects/bee.tscn")
 
 @export
 var NUM_BEES:int = 100

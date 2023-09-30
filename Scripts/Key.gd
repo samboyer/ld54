@@ -14,12 +14,16 @@ var bm:BeesManager = null
 var key_bee_threshold = 100;
 
 func _input(event):
-	if event is InputEventMouseButton:
-		if (event.button_index == MOUSE_BUTTON_LEFT
-			and event.pressed
-			and (bm.center_of_mass - self.position).length() < key_bee_threshold):
-			if mouse_in:
-				bm.spawn_bee()
+	if (event is InputEventMouseButton
+			and event.pressed and mouse_in):
+		if (bm.centre_of_mass - self.position).length() < key_bee_threshold:
+			print('BEE in RANGE')
+			get_parent().remove_child(self)
+			bm.bees[0].add_child(self)
+			position = Vector2(0,0)
+
+		else:
+			print('BEE NOT in RANGE')
 
 var mouse_in = false
 

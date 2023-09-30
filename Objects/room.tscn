@@ -36,10 +36,12 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 scale = Vector2(4, 4)
 texture = ExtResource("2_mxec2")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="DOOR" type="Node2D" parent="."]
 script = ExtResource("3_42c7e")
+DOOR_MOVE_CAMERA_SHAKE = 10.0
+DOOR_FINISH_CAMERA_SHAKE = 25.0
 
-[node name="RoomDoor" type="Sprite2D" parent="Node2D"]
+[node name="RoomDoor" type="Sprite2D" parent="DOOR"]
 z_index = -1001
 position = Vector2(16.968, -128.75)
 scale = Vector2(2, 2)

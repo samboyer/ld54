@@ -13,6 +13,7 @@ var DOOR_FINISH_CAMERA_SHAKE:float=50
 
 var start_pos:float=0
 var door_opening:=false
+var door_opened:=false
 var door_anim_t:=0.0
 
 var camera=null
@@ -21,6 +22,9 @@ func _ready():
 	camera = get_tree().get_first_node_in_group("cameras")
 
 func start_door_open():
+	if door_opened:
+		return
+	door_opened = true
 	door_opening=true
 	door_anim_t=0
 	start_pos = position.y

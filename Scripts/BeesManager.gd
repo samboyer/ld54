@@ -14,7 +14,7 @@ func _ready():
 	for i in range(NUM_BEES):
 		var x = beeObj.instantiate()
 		add_child(x)
-		x.position = Vector2(randi() % 1000 - 500, randi() % 1000 - 500)
+		x.position = Vector2(randi() % 500 - 250, randi() % 500 - 250)
 		bees.append(x)
 
 var centre_of_mass:Vector2 = Vector2.ZERO

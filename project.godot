@@ -13,13 +13,17 @@ config_version=5
 config/name="LD54"
 run/main_scene="res://scene.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
+boot_splash/image="res://Textures/bee.png"
+config/icon="res://Textures/bee.png"
 
 [display]
 
 window/size/viewport_width=800
 window/size/viewport_height=600
+window/stretch/mode="viewport"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

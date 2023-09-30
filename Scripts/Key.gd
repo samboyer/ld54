@@ -9,7 +9,8 @@ var tex_hover: Texture2D = null
 var bm: BeesManager = null
 
 # Called when the node enters the scene tree for the first time.
-# func _ready():
+func _ready():
+	bm = get_tree().get_first_node_in_group("BeesManager")
 
 var key_bee_threshold = 100;
 

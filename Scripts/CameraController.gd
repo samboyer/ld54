@@ -1,7 +1,7 @@
 extends Camera2D
 
 var camera_shake: float = 0.0
-var camera_shake_dropoff: float = 1000.0
+var camera_shake_dropoff: float = 500.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

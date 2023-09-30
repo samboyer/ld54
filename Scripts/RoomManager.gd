@@ -56,11 +56,11 @@ func _process(delta):
         if room_transition_t>=1:
             finish_transition_to_next_room()
 
-func _input(event):
-    if (event is InputEventMouseButton
-        and event.pressed):
-        load_next_room()
-        start_transition_to_next_room()
+# func _input(event):
+#     if (event is InputEventMouseButton
+#         and event.pressed):
+#         load_next_room()
+#         start_transition_to_next_room()
 
 
 func _ready():

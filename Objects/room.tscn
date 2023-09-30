@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ci1qd53jmqehh" path="res://Textures/room_bg_door_mask.png" id="6_dbn27"]
 [ext_resource type="Texture2D" uid="uid://c15csurjju7bp" path="res://Textures/key_highlihgt.png" id="6_ves8a"]
 [ext_resource type="Texture2D" uid="uid://da4wenbvxckce" path="res://Textures/keyhole.png" id="7_gbfof"]
+[ext_resource type="PackedScene" uid="uid://dup1w8why8n0u" path="res://Objects/Enemy.tscn" id="8_d3y83"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8cwx"]
 size = Vector2(804, 41)
@@ -110,6 +111,12 @@ texture = ExtResource("5_ji04a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Key"]
 shape = SubResource("RectangleShape2D_2h5xq")
+
+[node name="Enemy" parent="." instance=ExtResource("8_d3y83")]
+position = Vector2(200, 89)
+
+[node name="Enemy2" parent="." instance=ExtResource("8_d3y83")]
+position = Vector2(-109, 191)
 
 [connection signal="mouse_entered" from="Key" to="Key" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Key" to="Key" method="_on_mouse_exited"]

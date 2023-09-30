@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkts6jfmdoimv"]
+
+[ext_resource type="Script" path="res://Scripts/BeeGhost.gd" id="1_628i2"]
+[ext_resource type="Texture2D" uid="uid://c3nigy72i7vo6" path="res://Textures/bee_ghost.png" id="1_pm63r"]
+
+[node name="BeeGhost" type="Node2D"]
+script = ExtResource("1_628i2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_pm63r")

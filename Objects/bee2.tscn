@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://ct3upjefmfixo"]
+
+[ext_resource type="Script" path="res://Scripts/Bee.gd" id="1_vujc5"]
+[ext_resource type="Texture2D" uid="uid://dk0xiq56t015x" path="res://Textures/bee.png" id="2_gjuv5"]
+[ext_resource type="Texture2D" uid="uid://dl1kvol6fnvf6" path="res://Textures/1x1_white.png" id="2_i507m"]
+
+[sub_resource type="Curve" id="Curve_f1sak"]
+min_value = 2.13163e-14
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.527256, 0.441767), -1.40747, -1.40747, 0, 0, Vector2(1, 2.13163e-14), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_kpvv1"]
+offsets = PackedFloat32Array(0, 0.551155, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.319873, 0.319873, 0.319873, 1, 0, 0, 0, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n6mr5"]
+
+[node name="Bee" type="CharacterBody2D"]
+position = Vector2(0, 1)
+collision_mask = 2
+script = ExtResource("1_vujc5")
+metadata/_edit_group_ = true
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("2_i507m")
+emission_shape = 3
+emission_rect_extents = Vector2(30, 30)
+spread = 180.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_max = 25.0
+damping_min = 5.0
+damping_max = 5.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_f1sak")
+color_ramp = SubResource("Gradient_kpvv1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.3, 0.3)
+shape = SubResource("CircleShape2D_n6mr5")
+
+[node name="Sprite2d" type="Sprite2D" parent="."]
+position = Vector2(0.25, -0.25)
+scale = Vector2(2, 1.826)
+texture = ExtResource("2_gjuv5")
+offset = Vector2(2.08165e-12, 2.08165e-12)

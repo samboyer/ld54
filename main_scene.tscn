@@ -14,8 +14,8 @@
 [node name="Camera2D" type="Camera2D" parent="." groups=["cameras"]]
 script = ExtResource("1_28kfy")
 
-[node name="BeesManager" type="Node2D" parent="." node_paths=PackedStringArray("camera") groups=["BeesManager"]]
-script = ExtResource("2_h5l0y")
+[node name="BeesManager" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
+script = ExtResource("1_86lkx")
 attack_cooldown = 0.5
 attack_jitter = 25.0
 camera = NodePath("../Camera2D")

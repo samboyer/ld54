@@ -6,7 +6,7 @@ var maxspeed := 1000
 var accel := 8000
 var jitter: int = 50
 
-@export var attack_cooldown: float = 5.0
+@export var attack_cooldown: float = 1.0
 var attacking: bool = false
 var _attack_cooldown_counter: float = 0.0
 
@@ -23,15 +23,17 @@ func _ready():
     self.add_to_group("bees")
     particles = get_node("Particles")
     bm = get_tree().get_first_node_in_group('BeesManager')
+    print(bm)
 
 # Called when the bee is killed
 func kill():
-    # TODO: spawn ghost, play death animation, etc
-    var beeGhost = beeGhostObj.instantiate()
-    beeGhost.initial_position = position
-    get_parent().add_child(beeGhost)
-    bm.num_bees-=1
-    queue_free()
+    if not attacking:
+        # TODO: spawn ghost, play death animation, etc
+        var beeGhost = beeGhostObj.instantiate()
+        beeGhost.initial_position = position
+        get_parent().add_child(beeGhost)
+        bm.num_bees-=1
+        queue_free()
 
 func attack(target: Targetable):
     attacking = true
@@ -72,5 +74,7 @@ func _physics_process(delta):
     var jitter_vector := Vector2(Util.rand_range(-jitter, jitter), Util.rand_range(-jitter, jitter))
     var dir := (mouse_pos - self.position + jitter_vector).normalized() * accel
     velocity += dir * delta
+    var damping := velocity * -3
+    velocity += damping * delta
     velocity = velocity.limit_length(maxspeed)
     move_and_slide()

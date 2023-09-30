@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://liwkplx5rlx8"]
+[gd_scene load_steps=16 format=3 uid="uid://liwkplx5rlx8"]
 
 [ext_resource type="Texture2D" uid="uid://cpb1sbitd26h0" path="res://Textures/room_bg_1_without_door.png" id="1_lchdx"]
 [ext_resource type="Texture2D" uid="uid://bucmjw3k05p28" path="res://room_fg_1.png" id="2_mxec2"]

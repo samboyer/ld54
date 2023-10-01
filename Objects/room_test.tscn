@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://do0tf23x6jrxe"]
+[gd_scene load_steps=8 format=3 uid="uid://do0tf23x6jrxe"]
 
 [ext_resource type="PackedScene" uid="uid://liwkplx5rlx8" path="res://Objects/room.tscn" id="1_piqu5"]
 [ext_resource type="Script" path="res://Objects/Keyhole.gd" id="2_yn80g"]
@@ -12,12 +12,9 @@ size = Vector2(20, 32)
 
 [node name="ROOM" instance=ExtResource("1_piqu5")]
 
-[node name="RoomBg1" parent="." index="0"]
-z_index = -998
-
 [node name="Keyhole" type="Area2D" parent="DOOR" index="1"]
 z_index = -999
-position = Vector2(9, -122)
+position = Vector2(9, -114)
 scale = Vector2(1.5, 1.5)
 collision_layer = 16
 collision_mask = 16

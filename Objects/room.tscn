@@ -1,13 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://liwkplx5rlx8"]
+[gd_scene load_steps=22 format=3 uid="uid://liwkplx5rlx8"]
 
-[ext_resource type="Texture2D" uid="uid://cpb1sbitd26h0" path="res://Textures/room_bg_1_without_door.png" id="1_lchdx"]
+[ext_resource type="Script" path="res://Scripts/RoomAppearanceRandomiser.gd" id="1_lu2dm"]
+[ext_resource type="Texture2D" uid="uid://cmatcpxtqohnt" path="res://Textures/rooms/room_bundle_1.png" id="1_ula2j"]
+[ext_resource type="Texture2D" uid="uid://hv7h5e6aarq8" path="res://Textures/rooms/room_wall_3.png" id="2_514a5"]
 [ext_resource type="Texture2D" uid="uid://bucmjw3k05p28" path="res://Textures/room_fg_1.png" id="2_mxec2"]
 [ext_resource type="Script" path="res://Scripts/Room_Door.gd" id="3_42c7e"]
 [ext_resource type="Texture2D" uid="uid://dtjvuhl8jbai5" path="res://Textures/room_bg_door.png" id="3_d32jj"]
+[ext_resource type="Texture2D" uid="uid://hq8jkix1gmyj" path="res://Textures/rooms/acids_3.png" id="3_dk7ra"]
+[ext_resource type="Texture2D" uid="uid://b6q21c13pw8my" path="res://Textures/rooms/room_bundle_2.png" id="3_j2kbm"]
+[ext_resource type="Texture2D" uid="uid://l571gmpxbmr8" path="res://Textures/rooms/room_bundle_3.png" id="4_3l35r"]
 [ext_resource type="Texture2D" uid="uid://cpk1tqe3adg8q" path="res://Textures/room_door.png" id="4_i66ih"]
 [ext_resource type="AudioStream" uid="uid://bx4jxg8a2ssto" path="res://SFX/stone rumble.mp3" id="5_6foug"]
+[ext_resource type="Texture2D" uid="uid://cgcnbr5fkhuk7" path="res://Textures/rooms/room_wall_1.png" id="5_e5fyf"]
 [ext_resource type="Texture2D" uid="uid://ci1qd53jmqehh" path="res://Textures/room_bg_door_mask.png" id="6_dbn27"]
 [ext_resource type="AudioStream" uid="uid://d2wc8pr168wp5" path="res://SFX/stone_impact.mp3" id="6_eetax"]
+[ext_resource type="Texture2D" uid="uid://dgn2cq5au12xh" path="res://Textures/rooms/room_wall_2.png" id="6_hs061"]
+[ext_resource type="Texture2D" uid="uid://d3cga20g41n8m" path="res://Textures/rooms/acids_1.png" id="8_ulgyv"]
+[ext_resource type="Texture2D" uid="uid://dbu5jqsnl3vy6" path="res://Textures/rooms/acids_2.png" id="9_vhme2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_otlhh"]
 size = Vector2(97, 60)
@@ -21,12 +30,29 @@ size = Vector2(600, 40)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ft6iw"]
 size = Vector2(804, 121.5)
 
-[node name="ROOM" type="Node2D"]
+[node name="ROOM" type="Node2D" node_paths=PackedStringArray("RoomBgFloor", "RoomBgWall", "RoomBgAcids")]
+script = ExtResource("1_lu2dm")
+textures_floor = Array[Texture2D]([ExtResource("1_ula2j"), ExtResource("3_j2kbm"), ExtResource("4_3l35r")])
+textures_wall = Array[Texture2D]([ExtResource("5_e5fyf"), ExtResource("6_hs061"), ExtResource("2_514a5")])
+textures_acids = Array[Texture2D]([ExtResource("8_ulgyv"), ExtResource("9_vhme2"), ExtResource("3_dk7ra")])
+RoomBgFloor = NodePath("RoomBgFloor")
+RoomBgWall = NodePath("RoomBgWall")
+RoomBgAcids = NodePath("RoomBgAcids")
 
-[node name="RoomBg1" type="Sprite2D" parent="."]
-z_index = -1000
+[node name="RoomBgFloor" type="Sprite2D" parent="."]
+z_index = -998
 scale = Vector2(4, 4)
-texture = ExtResource("1_lchdx")
+texture = ExtResource("1_ula2j")
+
+[node name="RoomBgWall" type="Sprite2D" parent="."]
+z_index = -999
+scale = Vector2(4, 4)
+texture = ExtResource("2_514a5")
+
+[node name="RoomBgAcids" type="Sprite2D" parent="."]
+z_index = -998
+scale = Vector2(4, 4)
+texture = ExtResource("3_dk7ra")
 
 [node name="RoomFg1" type="Sprite2D" parent="."]
 z_index = 100
@@ -43,7 +69,7 @@ collision_mask = 8
 shape = SubResource("RectangleShape2D_otlhh")
 
 [node name="DOOR" type="Node2D" parent="." node_paths=PackedStringArray("door_rumble_sfx", "door_slam_sfx") groups=["door"]]
-position = Vector2(0, -79)
+position = Vector2(1, -79)
 script = ExtResource("3_42c7e")
 DOOR_MOVE_CAMERA_SHAKE = 10.0
 DOOR_FINISH_CAMERA_SHAKE = 25.0

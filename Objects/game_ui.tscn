@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://csklkhayaekud" path="res://Textures/ui_powerup.png" id="5_eexvs"]
 
 [node name="UI" type="Node2D"]
+material = ExtResource("1_2y2un")
 
 [node name="HB3" type="Label" parent="."]
 z_index = 1002
@@ -58,6 +59,7 @@ theme_override_font_sizes/font_size = 48
 text = "999"
 
 [node name="HP counter" type="Node2D" parent="."]
+material = ExtResource("1_2y2un")
 position = Vector2(-352, -298)
 
 [node name="UiHp" type="Sprite2D" parent="HP counter"]
@@ -102,6 +104,7 @@ text = "HB"
 [node name="PowerupBar" type="Node2D" parent="." groups=["powerup_bar"]]
 visible = false
 z_index = 999
+material = ExtResource("1_2y2un")
 position = Vector2(-152, -280)
 
 [node name="Sprite2D" type="Sprite2D" parent="PowerupBar"]

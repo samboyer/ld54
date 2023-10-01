@@ -235,8 +235,10 @@ initial_music_layers = Array[AudioStream]([ExtResource("24_ttevy"), ExtResource(
 latter_music_layers = Array[AudioStream]([ExtResource("31_u82ar"), ExtResource("26_tm3je"), ExtResource("27_ulrvy"), ExtResource("28_u27em"), ExtResource("29_tvxga"), ExtResource("30_laghh"), ExtResource("32_3lvlc"), ExtResource("33_6kugr"), ExtResource("34_ljbbo"), ExtResource("35_brrya"), ExtResource("36_yplid"), ExtResource("37_cdi8m"), ExtResource("38_h77nt"), ExtResource("39_riodp"), ExtResource("40_lf15g"), ExtResource("41_u061r"), ExtResource("42_cbv1l"), ExtResource("43_v6pa0")])
 beat_match_effect = NodePath("Beat match effects")
 
-[node name="Beat match effects" type="Node2D" parent="I AM THE MUSIC MAN" node_paths=PackedStringArray("cam")]
+[node name="Beat match effects" type="Node2D" parent="I AM THE MUSIC MAN" node_paths=PackedStringArray("cam", "other_stuff_to_zoom")]
 script = ExtResource("13_87bt5")
 cam = NodePath("../../Camera2D")
+other_stuff_to_zoom = [NodePath("../../UI")]
+max_other_zoom = 0.55
 
 [connection signal="pressed" from="GAME OVER SCREEN/mock main menu/Button" to="GAME OVER SCREEN/mock main menu" method="_reload_scene"]

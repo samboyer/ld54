@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwrf3yyl38t8g"]
+
+[ext_resource type="Script" path="res://Scripts/AcidBee.gd" id="1_0vt0f"]
+[ext_resource type="Texture2D" uid="uid://xw38hbe6415d" path="res://Textures/acid_bee.png" id="1_u12kn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3t6qi"]
+
+[node name="AcidBee" type="CharacterBody2D"]
+collision_layer = 5
+collision_mask = 2
+script = ExtResource("1_0vt0f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.3, 0.3)
+shape = SubResource("CircleShape2D_3t6qi")
+
+[node name="Sprite2d" type="Sprite2D" parent="."]
+position = Vector2(0.25, -0.25)
+scale = Vector2(2, 1.826)
+texture = ExtResource("1_u12kn")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(0.3, 0.3)
+shape = SubResource("CircleShape2D_3t6qi")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

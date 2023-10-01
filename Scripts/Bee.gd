@@ -84,7 +84,7 @@ func attack(target: Targetable) -> float:
         damage_amount *= crit_multiplier
 
     if target != null:
-        target.damage(int(damage_amount))
+        target.damage(int(damage_amount), self)
 
         var damageCounter = damageCounterObj.instantiate()
         damageCounter.position = target.position + Vector2(Util.rand_range(-25, 25), Util.rand_range(-25, 25))

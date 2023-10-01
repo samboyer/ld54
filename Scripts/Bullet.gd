@@ -35,7 +35,7 @@ func destroy():
     dead = true
     $Sprite2D.visible = false
     $Particles.emitting = true
-    $CollisionShape2D.disabled = true
+    #$CollisionShape2D.disabled = true
 
 func _on_body_entered(body:Node2D):
     if not dead:

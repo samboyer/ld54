@@ -140,7 +140,6 @@ bm = NodePath("../BeesManager")
 mm = NodePath("../I AM THE MUSIC MAN")
 
 [node name="RoomTransitionLabel" type="Label" parent="RoomManager"]
-visible = false
 z_index = 1000
 offset_left = -400.0
 offset_top = -300.0

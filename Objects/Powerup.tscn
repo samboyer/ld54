@@ -7,6 +7,8 @@
 size = Vector2(56, 56)
 
 [node name="Powerup" type="Area2D"]
+collision_layer = 8
+collision_mask = 8
 script = ExtResource("1_oxyxo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -15,3 +17,5 @@ texture = ExtResource("1_tc0cl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_arv0g")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

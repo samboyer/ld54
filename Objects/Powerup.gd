@@ -1,10 +1,18 @@
+class_name Powerup
 extends Area2D
 
 enum PowerupType { Speed, Power, Auto }
 var powerup_type: PowerupType
 
+var collected: bool = false
+var _collected_countdown: float = 1.0
+
+var bm: BeesManager
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    bm = get_tree().get_first_node_in_group('BeesManager')
+
     match Util.rand_range(0, 3):
         0:
             powerup_type = PowerupType.Speed
@@ -15,3 +23,15 @@ func _ready():
         2:
             powerup_type = PowerupType.Auto
             $Sprite2D.texture = load("res://Textures/powerup-2.png")
+
+func _process(delta: float):
+    if collected:
+        _collected_countdown -= delta
+        $Sprite2D.modulate.a = _collected_countdown ** 2
+        if _collected_countdown <= 0:
+            queue_free()
+
+func _on_area_entered(_area: Area2D):
+    if not collected:
+        bm.powerup(powerup_type)
+        collected = true

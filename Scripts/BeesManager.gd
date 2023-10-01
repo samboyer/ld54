@@ -45,7 +45,6 @@ var centre_of_mass:Vector2 = Vector2.ZERO
 
 func _input(event):
     if event.is_action_pressed("attack"):
-        _attack_cooldown_counter = 0.0
         _attacking = true
     elif event.is_action_released("attack"):
         _attacking = false
@@ -70,8 +69,10 @@ func find_free_bee() -> Bee:
 func fire_a_bee():
     var fired_bee: Bee = find_free_bee()
     if fired_bee != null:
-        fired_bee.attack(reticule.target)
+        var crit = fired_bee.attack(reticule.target)
         camera.jitter(attack_jitter)
+        if crit:
+            camera.jitter(attack_jitter)
         _attack_cooldown_counter = attack_cooldown
         for b in get_tree().get_nodes_in_group("bees"):
             if b != fired_bee:
@@ -82,6 +83,16 @@ func damage():
     invulnerable = true
     _iframes = iframes
 
+func powerup(powerup_type: Powerup.PowerupType):
+    match powerup_type:
+        Powerup.PowerupType.Speed:
+            attack_cooldown *= 0.8
+        Powerup.PowerupType.Power:
+            for b in get_tree().get_nodes_in_group("bees"):
+                b.damage *= 1.3
+        Powerup.PowerupType.Auto:
+            pass
+
 # # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
     reticule.target = find_target()
@@ -90,6 +101,7 @@ func _process(delta):
     invulnerable = _iframes > 0.0
 
     _attack_cooldown_counter = max(_attack_cooldown_counter - delta, 0.0)
+    reticule.active = _attack_cooldown_counter <= 0.0
     if reticule.target != null and _attacking and _attack_cooldown_counter <= 0:
         for _i in range(attack_bees):
             fire_a_bee()

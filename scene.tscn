@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgrvo2f81b5j"]
+[gd_scene load_steps=14 format=3 uid="uid://cgrvo2f81b5j"]
 
 [ext_resource type="Script" path="res://Scripts/BeesManager.gd" id="1_86lkx"]
 [ext_resource type="PackedScene" uid="uid://b1d1r1dq3pp15" path="res://Objects/game_ui.tscn" id="1_rbdpo"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://vatelb1typeq" path="res://SFX/room change.mp3" id="6_wwame"]
 [ext_resource type="Script" path="res://Scripts/RoomManager.gd" id="7_ucf1y"]
 [ext_resource type="Texture2D" uid="uid://bll4220pettl8" path="res://Textures/smoke.png" id="8_07fwu"]
+[ext_resource type="Texture2D" uid="uid://ddm0e8btwfyy2" path="res://Textures/reticule_inactive.png" id="8_oxnrr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_joq52"]
 
@@ -61,6 +62,8 @@ com_object = NodePath("centre_of_mass")
 visible = false
 z_index = 25
 script = ExtResource("4_kaefo")
+sprite_active = ExtResource("3_7vrma")
+sprite_inactive = ExtResource("8_oxnrr")
 
 [node name="ReticuleOuter" type="Sprite2D" parent="BeesManager/Reticule"]
 scale = Vector2(2, 2)

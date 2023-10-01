@@ -132,7 +132,7 @@ script = ExtResource("1_wwsk7")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Camera2D" groups=["CanvasModulate"]]
 
-[node name="1" type="Node2D" parent="." node_paths=PackedStringArray("room_num_label", "room_swoosh_sfx", "bm", "mm") groups=["RoomManager"]]
+[node name="RoomManager" type="Node2D" parent="." node_paths=PackedStringArray("room_num_label", "room_swoosh_sfx", "bm", "mm") groups=["RoomManager"]]
 script = ExtResource("7_ucf1y")
 ROOM_TRANSITION_TIME_SECS = 1.0
 room_starting = ExtResource("4_k6gwd")
@@ -146,6 +146,7 @@ bm = NodePath("../BeesManager")
 mm = NodePath("../I AM THE MUSIC MAN")
 
 [node name="RoomTransitionLabel" type="Label" parent="RoomManager"]
+visible = false
 z_index = 1000
 offset_left = -400.0
 offset_top = -300.0
@@ -157,9 +158,8 @@ text = "VXIII"
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
-visible = false
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="1"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="RoomManager"]
 stream = ExtResource("6_wwame")
 
 [node name="BeesManager" type="Node2D" parent="." node_paths=PackedStringArray("camera", "com_object", "bee_fire_sfx", "bee_die_sfx", "game_over_sfx", "game_over_panel", "mm", "rm", "label_gameover_rooms", "label_gameover_num_killed") groups=["BeesManager"]]
@@ -173,7 +173,7 @@ bee_die_sfx = NodePath("bee_die")
 game_over_sfx = NodePath("game_over")
 game_over_panel = NodePath("../GAME OVER SCREEN")
 mm = NodePath("../I AM THE MUSIC MAN")
-rm = NodePath("../1")
+rm = NodePath("../RoomManager")
 label_gameover_rooms = NodePath("../GAME OVER SCREEN/rooms cleared")
 label_gameover_num_killed = NodePath("../GAME OVER SCREEN/enemies killed")
 

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bxm2m7j4eu4gx" path="res://Textures/enemy_electric.png" id="2_jvc1j"]
 
 [node name="Enemy" instance=ExtResource("1_3uu01")]
+electricity = true
 sprite_base = ExtResource("2_jvc1j")
 sprite_still = ExtResource("2_jvc1j")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://liwkplx5rlx8"]
+[gd_scene load_steps=22 format=3 uid="uid://liwkplx5rlx8"]
 
 [ext_resource type="Texture2D" uid="uid://cpb1sbitd26h0" path="res://Textures/room_bg_1_without_door.png" id="1_lchdx"]
 [ext_resource type="Texture2D" uid="uid://bucmjw3k05p28" path="res://room_fg_1.png" id="2_mxec2"]
@@ -6,13 +6,15 @@
 [ext_resource type="Texture2D" uid="uid://dtjvuhl8jbai5" path="res://Textures/room_bg_door.png" id="3_d32jj"]
 [ext_resource type="Texture2D" uid="uid://cpk1tqe3adg8q" path="res://Textures/room_door.png" id="4_i66ih"]
 [ext_resource type="Script" path="res://Scripts/Key.gd" id="4_mpkp7"]
+[ext_resource type="AudioStream" uid="uid://bx4jxg8a2ssto" path="res://SFX/stone rumble.mp3" id="5_6foug"]
 [ext_resource type="Texture2D" uid="uid://bfx2onk2tucbc" path="res://Textures/key.png" id="5_ji04a"]
 [ext_resource type="Texture2D" uid="uid://ci1qd53jmqehh" path="res://Textures/room_bg_door_mask.png" id="6_dbn27"]
+[ext_resource type="AudioStream" uid="uid://d2wc8pr168wp5" path="res://SFX/stone_impact.mp3" id="6_eetax"]
 [ext_resource type="Texture2D" uid="uid://c15csurjju7bp" path="res://Textures/key_highlihgt.png" id="6_ves8a"]
 [ext_resource type="Script" path="res://Objects/Keyhole.gd" id="7_effwv"]
 [ext_resource type="Texture2D" uid="uid://da4wenbvxckce" path="res://Textures/keyhole.png" id="7_gbfof"]
 [ext_resource type="PackedScene" uid="uid://dup1w8why8n0u" path="res://Objects/Enemy.tscn" id="8_d3y83"]
-[ext_resource type="PackedScene" uid="uid://dfos2w0cct7s5" path="res://Objects/Barrel.tscn" id="13_eml4w"]
+[ext_resource type="PackedScene" path="res://Objects/Barrel.tscn" id="13_eml4w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_otlhh"]
 size = Vector2(97, 60)
@@ -22,6 +24,9 @@ size = Vector2(804, 41)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6f7x"]
 size = Vector2(600, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ft6iw"]
+size = Vector2(804, 229)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lkmme"]
 size = Vector2(20, 32)
@@ -50,16 +55,24 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="next level area"]
 shape = SubResource("RectangleShape2D_otlhh")
 
-[node name="DOOR" type="Node2D" parent="." groups=["door"]]
+[node name="DOOR" type="Node2D" parent="." node_paths=PackedStringArray("door_rumble_sfx", "door_slam_sfx") groups=["door"]]
 script = ExtResource("3_42c7e")
 DOOR_MOVE_CAMERA_SHAKE = 10.0
 DOOR_FINISH_CAMERA_SHAKE = 25.0
+door_rumble_sfx = NodePath("rumble")
+door_slam_sfx = NodePath("slam (and welcome to the jam)")
 
 [node name="door front" type="Sprite2D" parent="DOOR"]
 z_index = -1001
 position = Vector2(16.968, -128.75)
 scale = Vector2(2, 2)
 texture = ExtResource("4_i66ih")
+
+[node name="rumble" type="AudioStreamPlayer" parent="DOOR"]
+stream = ExtResource("5_6foug")
+
+[node name="slam (and welcome to the jam)" type="AudioStreamPlayer" parent="DOOR"]
+stream = ExtResource("6_eetax")
 
 [node name="RoomBgDoor" type="Sprite2D" parent="."]
 z_index = -1010
@@ -90,6 +103,28 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_n6f7x")
 
 [node name="vwall2" type="CollisionShape2D" parent="ROOM COLLISION"]
+position = Vector2(-380, 2.08165e-12)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_n6f7x")
+
+[node name="Collision for Enemies" type="StaticBody2D" parent="."]
+collision_layer = 68
+collision_mask = 64
+
+[node name="hwall" type="CollisionShape2D" parent="Collision for Enemies"]
+position = Vector2(3, -183.5)
+shape = SubResource("RectangleShape2D_ft6iw")
+
+[node name="hwall2" type="CollisionShape2D" parent="Collision for Enemies"]
+position = Vector2(2.08165e-12, 320)
+shape = SubResource("RectangleShape2D_q8cwx")
+
+[node name="vwall" type="CollisionShape2D" parent="Collision for Enemies"]
+position = Vector2(380, 2.08165e-12)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_n6f7x")
+
+[node name="vwall2" type="CollisionShape2D" parent="Collision for Enemies"]
 position = Vector2(-380, 2.08165e-12)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_n6f7x")

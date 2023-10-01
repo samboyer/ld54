@@ -41,6 +41,7 @@ attack={
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Bee Centreofmass/Door"
 2d_physics/layer_5="Key/Keyhole"
+2d_physics/layer_7="Enemy Walls"
 
 [rendering]
 

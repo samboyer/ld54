@@ -11,6 +11,10 @@ var DOOR_MOVE_CAMERA_SHAKE:float=25
 @export
 var DOOR_FINISH_CAMERA_SHAKE:float=50
 
+@export
+var door_rumble_sfx:AudioStreamPlayer=null
+@export
+var door_slam_sfx:AudioStreamPlayer=null
 
 var start_pos:float=0
 var door_opening:=false
@@ -31,11 +35,13 @@ func start_door_open():
 	door_opening=true
 	door_anim_t=0
 	start_pos = position.y
+	door_rumble_sfx.play()
 
 func end_door_open():
 	door_opening=false
 	door_anim_t=0
 	camera.jitter(DOOR_FINISH_CAMERA_SHAKE)
+	door_slam_sfx.play()
 
 func _process(delta):
 	if door_opening:

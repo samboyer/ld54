@@ -79,6 +79,7 @@ func add_bees(num_to_spawn, spawn_pos:Vector2, freeze_time:float=0.0):
 func _input(event):
     if event.is_action_pressed("attack"):
         _attacking = true
+        _attack_cooldown_counter -= 0.05
     elif event.is_action_released("attack"):
         _attacking = false
 

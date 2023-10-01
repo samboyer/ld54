@@ -5,7 +5,6 @@
 [ext_resource type="Script" path="res://Scripts/CameraController.gd" id="1_wwsk7"]
 [ext_resource type="Script" path="res://main_menu.gd" id="2_j34x3"]
 [ext_resource type="Texture2D" uid="uid://4kj685im4sft" path="res://Textures/reticule.png" id="3_7vrma"]
-[ext_resource type="FontFile" uid="uid://bew83n532qq8x" path="res://Textures/Minimal5x7.ttf" id="3_af5uo"]
 [ext_resource type="PackedScene" uid="uid://bht5qg7m7rfr8" path="res://Objects/room_starting.tscn" id="4_k6gwd"]
 [ext_resource type="Script" path="res://Scripts/Reticule.gd" id="4_kaefo"]
 [ext_resource type="PackedScene" uid="uid://do0tf23x6jrxe" path="res://Objects/room_test.tscn" id="5_jk71d"]
@@ -13,37 +12,38 @@
 [ext_resource type="AudioStream" uid="uid://vatelb1typeq" path="res://SFX/room change.mp3" id="6_wwame"]
 [ext_resource type="Script" path="res://Scripts/RoomManager.gd" id="7_ucf1y"]
 [ext_resource type="Texture2D" uid="uid://bll4220pettl8" path="res://Textures/smoke.png" id="8_07fwu"]
-[ext_resource type="AudioStream" uid="uid://dxhlar5tastot" path="res://Music/ogg/acid music 2 - kick.wav.ogg" id="12_v46tu"]
+[ext_resource type="Texture2D" uid="uid://ddm0e8btwfyy2" path="res://Textures/reticule_inactive.png" id="8_oxnrr"]
 [ext_resource type="Script" path="res://BeatMatchTest.gd" id="13_87bt5"]
+[ext_resource type="Texture2D" uid="uid://dj7xr7eryncht" path="res://Textures/powerup-0.png" id="13_jijss"]
 [ext_resource type="Script" path="res://MusicManager.gd" id="14_2goav"]
 [ext_resource type="AudioStream" uid="uid://dpqgqts2dgad7" path="res://SFX/bee_shoot.mp3" id="14_6ux7t"]
+[ext_resource type="AudioStream" uid="uid://b58lp30sjdh6f" path="res://SFX/bee_shoot2.mp3" id="15_72uug"]
 [ext_resource type="AudioStream" uid="uid://bt7lnj5sujd0n" path="res://SFX/game_over.mp3" id="15_enrrg"]
-[ext_resource type="AudioStream" uid="uid://c1s6j4vsdbw6r" path="res://Music/ogg/acid music 2 - 808.wav.ogg" id="15_sqorm"]
-[ext_resource type="AudioStream" uid="uid://du8dvdtbjf2gc" path="res://Music/ogg/acid music 2 - bass 1.wav.ogg" id="16_ti4ac"]
-[ext_resource type="AudioStream" uid="uid://m67jqq47nbkh" path="res://Music/ogg/acid music 2 - clap 1.wav.ogg" id="17_pupsa"]
-[ext_resource type="AudioStream" uid="uid://cu56a5x21uj2d" path="res://Music/ogg/acid music 2 - clap 2.wav.ogg" id="18_p0h13"]
-[ext_resource type="AudioStream" uid="uid://fm4nhgknwy7" path="res://Music/ogg/acid music 2 - crash.wav.ogg" id="19_q1m7b"]
-[ext_resource type="AudioStream" uid="uid://5cg04rlgoscx" path="res://Music/ogg/acid music 2 - crashes.wav.ogg" id="20_27tox"]
-[ext_resource type="AudioStream" uid="uid://3wmm68l0rcrp" path="res://Music/ogg/acid music 2 - drums top 1.wav.ogg" id="21_bn0mn"]
-[ext_resource type="AudioStream" uid="uid://c3rtx6wuui8pj" path="res://Music/ogg/acid music 2 - drums top 2.wav.ogg" id="22_2q44p"]
-[ext_resource type="AudioStream" uid="uid://0sumd6k2ywgx" path="res://Music/ogg/acid music 2 - drums top 3.wav.ogg" id="23_ythga"]
-[ext_resource type="AudioStream" uid="uid://dye8vjdu1m1gj" path="res://Music/ogg/acid music 2 - drums top 4.wav.ogg" id="24_05sk0"]
-[ext_resource type="AudioStream" uid="uid://cuh2say3fxs7" path="res://Music/ogg/acid music 2 - hats.wav.ogg" id="25_sdluc"]
-[ext_resource type="AudioStream" uid="uid://cgtopb2ephn7g" path="res://Music/ogg/acid music 2 - rave 1.wav.ogg" id="26_rbfo6"]
-[ext_resource type="AudioStream" uid="uid://cor5yg8eto4kv" path="res://Music/ogg/acid music 2 - rave 2.wav.ogg" id="27_f88gr"]
-[ext_resource type="AudioStream" uid="uid://tqb18xsx5odm" path="res://Music/ogg/acid music 2 - rave 3.wav.ogg" id="28_hddhw"]
-[ext_resource type="AudioStream" uid="uid://c8qlytthr5vr6" path="res://Music/ogg/acid music 2 - rave 4.wav.ogg" id="29_bvjmt"]
-[ext_resource type="AudioStream" uid="uid://xcr4brng0kbt" path="res://Music/ogg/acid music 2 - rave 45.wav.ogg" id="30_72el7"]
-[ext_resource type="AudioStream" uid="uid://3c1w06282ne2" path="res://Music/ogg/acid music 2 - sfx 1.wav.ogg" id="31_qoxib"]
-[ext_resource type="AudioStream" uid="uid://st7g1u7qwj6k" path="res://Music/ogg/acid music 2 - snare.wav.ogg" id="32_g2i2r"]
-[ext_resource type="AudioStream" uid="uid://c1xg5d5bsp5q" path="res://Music/ogg/acid music 2 - vox2.wav.ogg" id="33_4w50y"]
-[ext_resource type="AudioStream" uid="uid://du36hadywxc6u" path="res://Music/ogg/acid music 2 - vox 1.wav.ogg" id="34_svoon"]
-[ext_resource type="AudioStream" uid="uid://doxo1cu4xuddc" path="res://Music/ogg/acid music 2 - vox 3.wav.ogg" id="35_si2ry"]
-[ext_resource type="AudioStream" uid="uid://bos10h27uxq6c" path="res://Music/ogg/acid music 2 - vox 4.wav.ogg" id="36_ffc8t"]
-[ext_resource type="AudioStream" uid="uid://bhdrhis6m7hms" path="res://Music/ogg/acid music 2 - vox 5.wav.ogg" id="37_prqes"]
-[ext_resource type="AudioStream" uid="uid://cwg3l51esbiky" path="res://Music/ogg/acid music 2 - vox 6.wav.ogg" id="38_ooso8"]
-[ext_resource type="Texture2D" uid="uid://ddm0e8btwfyy2" path="res://Textures/reticule_inactive.png" id="8_oxnrr"]
-[ext_resource type="Texture2D" uid="uid://dj7xr7eryncht" path="res://Textures/powerup-0.png" id="13_jijss"]
+[ext_resource type="AudioStream" uid="uid://c1s6j4vsdbw6r" path="res://Music/initial_layers/acid music 2 - 808.wav.ogg" id="19_dwoly"]
+[ext_resource type="AudioStream" uid="uid://3wmm68l0rcrp" path="res://Music/initial_layers/acid music 2 - drums top 1.wav.ogg" id="20_qb6tm"]
+[ext_resource type="AudioStream" uid="uid://c3rtx6wuui8pj" path="res://Music/initial_layers/acid music 2 - drums top 2.wav.ogg" id="21_ag17h"]
+[ext_resource type="AudioStream" uid="uid://0sumd6k2ywgx" path="res://Music/initial_layers/acid music 2 - drums top 3.wav.ogg" id="22_2co17"]
+[ext_resource type="AudioStream" uid="uid://dye8vjdu1m1gj" path="res://Music/initial_layers/acid music 2 - drums top 4.wav.ogg" id="23_hnq8k"]
+[ext_resource type="AudioStream" uid="uid://dxhlar5tastot" path="res://Music/initial_layers/acid music 2 - kick.wav.ogg" id="24_ttevy"]
+[ext_resource type="AudioStream" uid="uid://3c1w06282ne2" path="res://Music/initial_layers/acid music 2 - sfx 1.wav.ogg" id="25_3pa5i"]
+[ext_resource type="AudioStream" uid="uid://du8dvdtbjf2gc" path="res://Music/latter_layers/acid music 2 - bass 1.wav.ogg" id="26_tm3je"]
+[ext_resource type="AudioStream" uid="uid://m67jqq47nbkh" path="res://Music/latter_layers/acid music 2 - clap 1.wav.ogg" id="27_ulrvy"]
+[ext_resource type="AudioStream" uid="uid://cu56a5x21uj2d" path="res://Music/latter_layers/acid music 2 - clap 2.wav.ogg" id="28_u27em"]
+[ext_resource type="AudioStream" uid="uid://fm4nhgknwy7" path="res://Music/latter_layers/acid music 2 - crash.wav.ogg" id="29_tvxga"]
+[ext_resource type="AudioStream" uid="uid://5cg04rlgoscx" path="res://Music/latter_layers/acid music 2 - crashes.wav.ogg" id="30_laghh"]
+[ext_resource type="AudioStream" uid="uid://cuh2say3fxs7" path="res://Music/latter_layers/acid music 2 - hats.wav.ogg" id="31_u82ar"]
+[ext_resource type="AudioStream" uid="uid://cgtopb2ephn7g" path="res://Music/latter_layers/acid music 2 - rave 1.wav.ogg" id="32_3lvlc"]
+[ext_resource type="AudioStream" uid="uid://cor5yg8eto4kv" path="res://Music/latter_layers/acid music 2 - rave 2.wav.ogg" id="33_6kugr"]
+[ext_resource type="AudioStream" uid="uid://tqb18xsx5odm" path="res://Music/latter_layers/acid music 2 - rave 3.wav.ogg" id="34_ljbbo"]
+[ext_resource type="AudioStream" uid="uid://c8qlytthr5vr6" path="res://Music/latter_layers/acid music 2 - rave 4.wav.ogg" id="35_brrya"]
+[ext_resource type="AudioStream" uid="uid://xcr4brng0kbt" path="res://Music/latter_layers/acid music 2 - rave 45.wav.ogg" id="36_yplid"]
+[ext_resource type="AudioStream" uid="uid://st7g1u7qwj6k" path="res://Music/latter_layers/acid music 2 - snare.wav.ogg" id="37_cdi8m"]
+[ext_resource type="AudioStream" uid="uid://c1xg5d5bsp5q" path="res://Music/latter_layers/acid music 2 - vox2.wav.ogg" id="38_h77nt"]
+[ext_resource type="AudioStream" uid="uid://du36hadywxc6u" path="res://Music/latter_layers/acid music 2 - vox 1.wav.ogg" id="39_riodp"]
+[ext_resource type="AudioStream" uid="uid://doxo1cu4xuddc" path="res://Music/latter_layers/acid music 2 - vox 3.wav.ogg" id="40_lf15g"]
+[ext_resource type="AudioStream" uid="uid://bos10h27uxq6c" path="res://Music/latter_layers/acid music 2 - vox 4.wav.ogg" id="41_u061r"]
+[ext_resource type="AudioStream" uid="uid://bhdrhis6m7hms" path="res://Music/latter_layers/acid music 2 - vox 5.wav.ogg" id="42_cbv1l"]
+[ext_resource type="AudioStream" uid="uid://cwg3l51esbiky" path="res://Music/latter_layers/acid music 2 - vox 6.wav.ogg" id="43_v6pa0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_joq52"]
 
@@ -56,9 +56,9 @@ z_index = 1000
 [node name="Game over" type="Label" parent="GAME OVER SCREEN"]
 z_index = 1000
 offset_left = -400.0
-offset_top = -419.0
+offset_top = -458.0
 offset_right = 400.0
-offset_bottom = 181.0
+offset_bottom = 142.0
 theme_override_fonts/font = ExtResource("5_sf16f")
 theme_override_font_sizes/font_size = 330
 text = "GAME"
@@ -66,12 +66,35 @@ horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 
+[node name="rooms cleared" type="Label" parent="GAME OVER SCREEN"]
+z_index = 1000
+offset_left = -380.0
+offset_top = 210.0
+offset_right = -100.0
+offset_bottom = 310.0
+theme_override_fonts/font = ExtResource("5_sf16f")
+theme_override_font_sizes/font_size = 24
+text = "99 ROOMS CLEARED"
+vertical_alignment = 1
+
+[node name="enemies killed" type="Label" parent="GAME OVER SCREEN"]
+z_index = 1000
+offset_left = -420.0
+offset_top = 210.0
+offset_right = 380.0
+offset_bottom = 310.0
+theme_override_fonts/font = ExtResource("5_sf16f")
+theme_override_font_sizes/font_size = 24
+text = "999 ACIDS DEFEATED"
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="Game over2" type="Label" parent="GAME OVER SCREEN"]
 z_index = 1000
 offset_left = -400.0
-offset_top = -169.0
+offset_top = -208.0
 offset_right = 400.0
-offset_bottom = 431.0
+offset_bottom = 392.0
 theme_override_fonts/font = ExtResource("5_sf16f")
 theme_override_font_sizes/font_size = 330
 text = "OVER"
@@ -89,13 +112,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -75.0
-offset_top = 255.0
+offset_top = 237.0
 offset_right = 75.0
-offset_bottom = 295.0
+offset_bottom = 284.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_af5uo")
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("5_sf16f")
+theme_override_font_sizes/font_size = 24
 text = "RESTART"
 
 [node name="UI" parent="." instance=ExtResource("1_rbdpo")]
@@ -133,16 +156,20 @@ clip_text = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="RoomManager"]
 stream = ExtResource("6_wwame")
 
-[node name="BeesManager" type="Node2D" parent="." node_paths=PackedStringArray("camera", "com_object", "bee_fire_sfx", "game_over_sfx", "game_over_panel", "mm") groups=["BeesManager"]]
+[node name="BeesManager" type="Node2D" parent="." node_paths=PackedStringArray("camera", "com_object", "bee_fire_sfx", "bee_die_sfx", "game_over_sfx", "game_over_panel", "mm", "rm", "label_gameover_rooms", "label_gameover_num_killed") groups=["BeesManager"]]
 script = ExtResource("1_86lkx")
 attack_cooldown = 0.5
 attack_jitter = 25.0
 camera = NodePath("../Camera2D")
 com_object = NodePath("centre_of_mass")
 bee_fire_sfx = NodePath("bee_shoot")
+bee_die_sfx = NodePath("bee_die")
 game_over_sfx = NodePath("game_over")
 game_over_panel = NodePath("../GAME OVER SCREEN")
 mm = NodePath("../I AM THE MUSIC MAN")
+rm = NodePath("../RoomManager")
+label_gameover_rooms = NodePath("../GAME OVER SCREEN/rooms cleared")
+label_gameover_num_killed = NodePath("../GAME OVER SCREEN/enemies killed")
 
 [node name="Reticule" type="Node2D" parent="BeesManager"]
 visible = false
@@ -171,25 +198,30 @@ visible = false
 texture = ExtResource("8_07fwu")
 
 [node name="bee_shoot" type="AudioStreamPlayer" parent="BeesManager"]
+stream = ExtResource("15_72uug")
+volume_db = -6.0
+
+[node name="bee_die" type="AudioStreamPlayer" parent="BeesManager"]
 stream = ExtResource("14_6ux7t")
 
 [node name="game_over" type="AudioStreamPlayer" parent="BeesManager"]
 stream = ExtResource("15_enrrg")
-
-[node name="I AM THE MUSIC MAN" type="Node2D" parent="." node_paths=PackedStringArray("beat_match_effect")]
-script = ExtResource("14_2goav")
-music_layers = Array[AudioStream]([ExtResource("12_v46tu"), ExtResource("25_sdluc"), ExtResource("17_pupsa"), ExtResource("16_ti4ac"), ExtResource("27_f88gr"), ExtResource("20_27tox"), ExtResource("26_rbfo6"), ExtResource("15_sqorm"), ExtResource("22_2q44p"), ExtResource("31_qoxib"), ExtResource("28_hddhw"), ExtResource("29_bvjmt"), ExtResource("30_72el7"), ExtResource("19_q1m7b"), ExtResource("32_g2i2r"), ExtResource("21_bn0mn"), ExtResource("18_p0h13"), ExtResource("24_05sk0"), ExtResource("33_4w50y"), ExtResource("34_svoon"), ExtResource("38_ooso8"), ExtResource("23_ythga"), ExtResource("35_si2ry"), ExtResource("36_ffc8t"), ExtResource("37_prqes")])
-beat_match_effect = NodePath("Beat match effects")
-
-[node name="Beat match effects" type="Node2D" parent="I AM THE MUSIC MAN" node_paths=PackedStringArray("cam", "other_stuff_to_zoom")]
-script = ExtResource("13_87bt5")
-cam = NodePath("../../Camera2D")
-other_stuff_to_zoom = [NodePath("../../UI")]
 
 [node name="PowerupIcon" type="Sprite2D" parent="BeesManager"]
 visible = false
 z_index = 800
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("13_jijss")
+
+[node name="I AM THE MUSIC MAN" type="Node2D" parent="." node_paths=PackedStringArray("beat_match_effect")]
+script = ExtResource("14_2goav")
+initial_music_layers = Array[AudioStream]([ExtResource("24_ttevy"), ExtResource("19_dwoly"), ExtResource("20_qb6tm"), ExtResource("21_ag17h"), ExtResource("22_2co17"), ExtResource("23_hnq8k"), ExtResource("25_3pa5i")])
+latter_music_layers = Array[AudioStream]([ExtResource("31_u82ar"), ExtResource("26_tm3je"), ExtResource("27_ulrvy"), ExtResource("28_u27em"), ExtResource("29_tvxga"), ExtResource("30_laghh"), ExtResource("32_3lvlc"), ExtResource("33_6kugr"), ExtResource("34_ljbbo"), ExtResource("35_brrya"), ExtResource("36_yplid"), ExtResource("37_cdi8m"), ExtResource("38_h77nt"), ExtResource("39_riodp"), ExtResource("40_lf15g"), ExtResource("41_u061r"), ExtResource("42_cbv1l"), ExtResource("43_v6pa0")])
+beat_match_effect = NodePath("Beat match effects")
+
+[node name="Beat match effects" type="Node2D" parent="I AM THE MUSIC MAN" node_paths=PackedStringArray("cam", "other_stuff_to_zoom")]
+script = ExtResource("13_87bt5")
+cam = NodePath("../../Camera2D")
+other_stuff_to_zoom = [NodePath("../../UI")]
 
 [connection signal="pressed" from="GAME OVER SCREEN/mock main menu/Button" to="GAME OVER SCREEN/mock main menu" method="_reload_scene"]

@@ -10,6 +10,8 @@ var num_bees: int = 0
 
 
 var label_hp: Label = null
+var label_dmg: Label = null
+var label_cooldown: Label = null
 var powerup_bar: Node = null
 
 var SHOOT_PULL_INWARD: float = 0.5
@@ -32,15 +34,22 @@ var _powerup_icon: float = 0.0
 @export var camera: Camera2D
 @export var com_object: Area2D
 @export var bee_fire_sfx: AudioStreamPlayer
+@export var bee_die_sfx: AudioStreamPlayer
 @export var game_over_sfx: AudioStreamPlayer
 @export var game_over_panel: Node2D
 @export var mm:MusicManager
+@export var rm:RoomManager
+@export var label_gameover_rooms:Label
+@export var label_gameover_num_killed:Label
 
 var reticule: Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
     label_hp = get_tree().get_first_node_in_group('hp_number')
+    label_dmg = get_tree().get_first_node_in_group('dmg_number')
+    label_cooldown = get_tree().get_first_node_in_group('cooldown_number')
+    powerup_bar = get_tree().get_first_node_in_group('powerup_bar')
 
     for i in range(STARTING_NUM_BEES):
         var x = beeObj.instantiate()
@@ -49,6 +58,7 @@ func _ready():
     num_bees = STARTING_NUM_BEES
 
     reticule = find_child("Reticule")
+    Util.num_enemies_killed = 0
 
 var centre_of_mass:Vector2 = Vector2.ZERO
 
@@ -87,17 +97,25 @@ func fire_a_bee():
             if b != fired_bee:
                 b.position = lerp(b.position, centre_of_mass, SHOOT_PULL_INWARD)
                 # b.velocity = (centre_of_mass - b.position).normalized() * 100.0
+    bee_fire_sfx.pitch_scale = Util.rand_range_float(1.0, 1.3)
     bee_fire_sfx.play()
+
+func gameover():
+    game_over_panel.visible = true
+    game_over_sfx.play()
+    mm.stop_all()
+    label_gameover_rooms.text = str(rm.rooms_reached) + " ROOMS CLEARED"
+    label_gameover_num_killed.text = str(Util.num_enemies_killed) + " ACIDS DEFEATED"
 
 # called when a bee dies
 func damage():
+    if rm.room_transitioning:
+        return
     invulnerable = true
     _iframes = iframes
     if num_bees==0:
-        # game over
-        game_over_panel.visible = true
-        game_over_sfx.play()
-        mm.stop_all()
+        gameover()
+    bee_die_sfx.play()
 
 
 func powerup(powerup_type: Powerup.PowerupType):
@@ -159,14 +177,19 @@ func _process(delta):
     if _powerup_auto > 0.0:
         _attack_cooldown_counter = max(_attack_cooldown_counter - 2 * delta, 0.0)
     reticule.active = _attack_cooldown_counter <= 0.0
-    if reticule.target != null and _attacking and _attack_cooldown_counter <= 0:
+    if _attacking and _attack_cooldown_counter <= 0 and not rm.room_transitioning:
         for _i in range(attack_bees):
             fire_a_bee()
 
     centre_of_mass = Vector2.ZERO
+    var damage_for_ui:=0.0
     for b in get_tree().get_nodes_in_group("bees"):
         centre_of_mass += b.position
+        damage_for_ui = b.damage
     centre_of_mass /= num_bees
     com_object.position = centre_of_mass
 
+    # Update ui
     label_hp.text = str(num_bees)
+    label_dmg.text = str(damage_for_ui)
+    label_cooldown.text = str(attack_cooldown)

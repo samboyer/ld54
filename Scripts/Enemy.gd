@@ -54,6 +54,7 @@ var im_dead :=false
 
 func on_death():
     im_dead = true
+    Util.num_enemies_killed +=1
     $Sprite2D.visible = false
     $Particles.emitting = true
     $CollisionShape2D.disabled = true

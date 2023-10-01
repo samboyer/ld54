@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://st7g1u7qwj6k"
+path="res://.godot/imported/acid music 2 - snare.wav.ogg-f7dcf71b3738537fd7a126f286ae6a04.oggvorbisstr"
+
+[deps]
+
+source_file="res://Music/latter_layers/acid music 2 - snare.wav.ogg"
+dest_files=["res://.godot/imported/acid music 2 - snare.wav.ogg-f7dcf71b3738537fd7a126f286ae6a04.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

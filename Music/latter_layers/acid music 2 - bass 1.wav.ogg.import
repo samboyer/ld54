@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://du8dvdtbjf2gc"
+path="res://.godot/imported/acid music 2 - bass 1.wav.ogg-cbb07d96d8c50adf6068974d31d8bfaa.oggvorbisstr"
+
+[deps]
+
+source_file="res://Music/latter_layers/acid music 2 - bass 1.wav.ogg"
+dest_files=["res://.godot/imported/acid music 2 - bass 1.wav.ogg-cbb07d96d8c50adf6068974d31d8bfaa.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

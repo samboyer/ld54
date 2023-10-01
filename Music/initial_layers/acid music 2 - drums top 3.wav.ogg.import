@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://0sumd6k2ywgx"
+path="res://.godot/imported/acid music 2 - drums top 3.wav.ogg-a56d2720aef13c7cafa3e765f37d3d8c.oggvorbisstr"
+
+[deps]
+
+source_file="res://Music/initial_layers/acid music 2 - drums top 3.wav.ogg"
+dest_files=["res://.godot/imported/acid music 2 - drums top 3.wav.ogg-a56d2720aef13c7cafa3e765f37d3d8c.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

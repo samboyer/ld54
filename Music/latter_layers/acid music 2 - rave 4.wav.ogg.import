@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c8qlytthr5vr6"
+path="res://.godot/imported/acid music 2 - rave 4.wav.ogg-c8710509d882d4c2c05d5becf5797ccd.oggvorbisstr"
+
+[deps]
+
+source_file="res://Music/latter_layers/acid music 2 - rave 4.wav.ogg"
+dest_files=["res://.godot/imported/acid music 2 - rave 4.wav.ogg-c8710509d882d4c2c05d5becf5797ccd.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

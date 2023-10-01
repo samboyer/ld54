@@ -12,3 +12,5 @@ func cubic_ease_out(t: float) -> float:
 
 # global flags that persist inbetween games
 var FLAGS=[]
+
+var num_enemies_killed := 0

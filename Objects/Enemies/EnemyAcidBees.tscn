@@ -3,3 +3,4 @@
 [ext_resource type="PackedScene" uid="uid://cg6b37aslx1bm" path="res://Objects/AcidBeeSwarm.tscn" id="1_bkqa6"]
 
 [node name="AcidBeeSwarm" instance=ExtResource("1_bkqa6")]
+speed = 75.0

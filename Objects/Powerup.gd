@@ -6,6 +6,7 @@ var powerup_type: PowerupType
 
 var collected: bool = false
 var _collected_countdown: float = 1.0
+var powerup_weights: Array = [5, 5, 2, 1]
 
 var bm: BeesManager
 
@@ -13,7 +14,10 @@ var bm: BeesManager
 func _ready():
     bm = get_tree().get_first_node_in_group('BeesManager')
 
-    match Util.rand_range(0, 4):
+    var weights_sum: int = 0
+    for weight in powerup_weights:
+        weights_sum += weight
+    match Util.weighted_random_choice(powerup_weights, weights_sum):
         0:
             powerup_type = PowerupType.Speed
             $Sprite2D.texture = load("res://Textures/powerup-0.png")

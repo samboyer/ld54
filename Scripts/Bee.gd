@@ -10,7 +10,12 @@ var jitter: int = 50
 var attacking: bool = false
 var _attack_cooldown_counter: float = 0.0
 
-@export var base_damage: int = 5
+@export var base_damage: float = 5.0
+@export var damage_spread: float = 0.5
+@export var base_crit: float = 0.1
+@export var crit_multiplier: float = 3.0
+var damage: float
+var crit: float
 
 var particles: Node
 
@@ -25,17 +30,26 @@ func _ready():
     bm = get_tree().get_first_node_in_group('BeesManager')
     print(bm)
 
+    damage = base_damage
+    crit = base_crit
+
 # Called when the bee is killed
 func kill():
     if not attacking:
-        # TODO: spawn ghost, play death animation, etc
+        for child in get_children():
+            if child is Key:
+                child.key_picked_up = false
+                remove_child(child)
+                get_parent().get_parent().add_child(child)
+                child.position = position
+
         var beeGhost = beeGhostObj.instantiate()
         beeGhost.initial_position = position
         get_parent().add_child(beeGhost)
         bm.num_bees-=1
         queue_free()
 
-func attack(target: Targetable):
+func attack(target: Targetable) -> float:
     attacking = true
     var dir: Vector2 = (target.position - position).normalized()
     var centre: Vector2 = (position - target.position) / 2
@@ -52,14 +66,19 @@ func attack(target: Targetable):
     position = target.position
     velocity = dir * 10000
 
-    var damage = base_damage
+    var damage_amount := damage * Util.rand_range_float(1 - (damage_spread / 2), 1 + (damage_spread / 2))
+    var crit_roll := Util.rand_range_float(0, 1) < crit
+    if crit_roll:
+        damage_amount *= crit_multiplier
 
-    target.damage(damage)
+    target.damage(int(damage_amount))
 
     var damageCounter = damageCounterObj.instantiate()
     damageCounter.position = target.position + Vector2(Util.rand_range(-25, 25), Util.rand_range(-25, 25))
-    damageCounter.amount = damage
+    damageCounter.amount = int(damage_amount)
     get_parent().add_child(damageCounter)
+
+    return crit_roll
 
 func _process(delta):
     if attacking:

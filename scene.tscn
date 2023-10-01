@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cgrvo2f81b5j"]
+[gd_scene load_steps=45 format=3 uid="uid://cgrvo2f81b5j"]
 
 [ext_resource type="Script" path="res://Scripts/BeesManager.gd" id="1_86lkx"]
 [ext_resource type="PackedScene" uid="uid://b1d1r1dq3pp15" path="res://Objects/game_ui.tscn" id="1_rbdpo"]
@@ -42,6 +42,7 @@
 [ext_resource type="AudioStream" uid="uid://bos10h27uxq6c" path="res://Music/ogg/acid music 2 - vox 4.wav.ogg" id="36_ffc8t"]
 [ext_resource type="AudioStream" uid="uid://bhdrhis6m7hms" path="res://Music/ogg/acid music 2 - vox 5.wav.ogg" id="37_prqes"]
 [ext_resource type="AudioStream" uid="uid://cwg3l51esbiky" path="res://Music/ogg/acid music 2 - vox 6.wav.ogg" id="38_ooso8"]
+[ext_resource type="Texture2D" uid="uid://ddm0e8btwfyy2" path="res://Textures/reticule_inactive.png" id="8_oxnrr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_joq52"]
 
@@ -146,6 +147,8 @@ mm = NodePath("../I AM THE MUSIC MAN")
 visible = false
 z_index = 25
 script = ExtResource("4_kaefo")
+sprite_active = ExtResource("3_7vrma")
+sprite_inactive = ExtResource("8_oxnrr")
 
 [node name="ReticuleOuter" type="Sprite2D" parent="BeesManager/Reticule"]
 scale = Vector2(2, 2)

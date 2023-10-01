@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bll4220pettl8" path="res://Textures/smoke.png" id="3_417yu"]
 [ext_resource type="Texture2D" uid="uid://ide2qjbp3i" path="res://Textures/enemy_blush.png" id="3_inn11"]
 [ext_resource type="Texture2D" uid="uid://dkifdcp5mjdu0" path="res://Textures/enemy_woah.png" id="4_uslow"]
+[ext_resource type="Texture2D" uid="uid://cxkc4d5avlwov" path="res://Textures/gun.png" id="6_0u2oc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_560yg"]
 radius = 29.0689
@@ -42,13 +43,19 @@ scale_amount_max = 2.0
 color = Color(0.6, 0.898039, 0.313726, 1)
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 64
-collision_mask = 4
+collision_layer = 4
+collision_mask = 68
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_560yg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_560yg")
+
+[node name="Gun" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(17, 8)
+scale = Vector2(4, 4)
+texture = ExtResource("6_0u2oc")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

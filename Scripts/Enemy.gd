@@ -6,8 +6,11 @@ extends Targetable
 @export var charge_speed: float = 0.3
 @export var cooldown_time: float = 2.0
 @export var jitter: float = 0.5
-enum EnemyType { BASE, SHY, STRAFE }
+enum EnemyType { BASE, SHY, STRAFE, STILL }
 @export var enemy_type: EnemyType = EnemyType.BASE
+@export var gun: bool = false
+@export var gun_speed: float = 100
+@export var gun_cooldown: float = 0.5
 
 @export var key_to_drop:PackedScene
 
@@ -19,6 +22,10 @@ enum EnemyType { BASE, SHY, STRAFE }
 var _state: int = 0
 var _state_cooldown: float = 0.0
 var _direction: Vector2 = Vector2(0, 0)
+
+var _gun_cooldown: float = 0.0
+
+@onready var bulletObj = preload("res://Objects/Bullet.tscn")
 
 var bm: BeesManager
 
@@ -35,6 +42,11 @@ func _ready():
             $Sprite2D.texture = sprite_shy
         EnemyType.STRAFE:
             $Sprite2D.texture = sprite_strafe
+        EnemyType.STILL:
+            $Sprite2D.texture = sprite_base
+
+    $Gun.visible = gun
+    _gun_cooldown = gun_cooldown
 
     super()
 
@@ -44,6 +56,7 @@ func on_death():
     im_dead = true
     $Sprite2D.visible = false
     $Particles.emitting = true
+    $CollisionShape2D.disabled = true
 
     # if all other enemies are dead, spawn a key at this position
     var all_dead := true
@@ -65,7 +78,8 @@ func choose_target():
             _direction *= -1
         EnemyType.STRAFE:
             _direction = _direction.rotated(0.5 * PI)
-
+        EnemyType.STILL:
+            _direction = Vector2.ZERO
 
 func _process(delta):
     if not dead:
@@ -92,6 +106,26 @@ func _process(delta):
             2:
                 velocity = Vector2.ZERO
 
+        if velocity.x < 0:
+            $Sprite2D.flip_h = true
+            $Gun.flip_h = true
+            $Gun.position.x = -16
+        elif velocity.x > 0:
+            $Sprite2D.flip_h = false
+            $Gun.flip_h = false
+            $Gun.position.x = 16
+
+        if gun:
+            _gun_cooldown -= delta
+            var dir = (bm.centre_of_mass - global_position).normalized()
+            if _gun_cooldown <= 0:
+                _gun_cooldown = gun_cooldown
+                var bullet = bulletObj.instantiate()
+                bullet.position = $Gun.global_position
+                bullet.direction = dir
+                bullet.speed = gun_speed
+                get_parent().add_child(bullet)
+
         #position += velocity * delta
         move_and_slide()
 
@@ -99,6 +133,6 @@ func _process(delta):
 
 
 func _on_area_2d_body_entered(body: Node2D):
-    if body is Bee and not bm.invulnerable:
+    if body is Bee and not bm.invulnerable and not dead:
         body.kill()
         bm.damage()

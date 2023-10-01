@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cgrvo2f81b5j"]
+[gd_scene load_steps=46 format=3 uid="uid://cgrvo2f81b5j"]
 
 [ext_resource type="Script" path="res://Scripts/BeesManager.gd" id="1_86lkx"]
 [ext_resource type="PackedScene" uid="uid://b1d1r1dq3pp15" path="res://Objects/game_ui.tscn" id="1_rbdpo"]
@@ -43,6 +43,7 @@
 [ext_resource type="AudioStream" uid="uid://bhdrhis6m7hms" path="res://Music/ogg/acid music 2 - vox 5.wav.ogg" id="37_prqes"]
 [ext_resource type="AudioStream" uid="uid://cwg3l51esbiky" path="res://Music/ogg/acid music 2 - vox 6.wav.ogg" id="38_ooso8"]
 [ext_resource type="Texture2D" uid="uid://ddm0e8btwfyy2" path="res://Textures/reticule_inactive.png" id="8_oxnrr"]
+[ext_resource type="Texture2D" uid="uid://dj7xr7eryncht" path="res://Textures/powerup-0.png" id="13_jijss"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_joq52"]
 
@@ -184,5 +185,11 @@ beat_match_effect = NodePath("Beat match effects")
 script = ExtResource("13_87bt5")
 cam = NodePath("../../Camera2D")
 other_stuff_to_zoom = [NodePath("../../UI")]
+
+[node name="PowerupIcon" type="Sprite2D" parent="BeesManager"]
+visible = false
+z_index = 800
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("13_jijss")
 
 [connection signal="pressed" from="GAME OVER SCREEN/mock main menu/Button" to="GAME OVER SCREEN/mock main menu" method="_reload_scene"]

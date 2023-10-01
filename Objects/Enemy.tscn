@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dkifdcp5mjdu0" path="res://Textures/enemy_woah.png" id="4_uslow"]
 [ext_resource type="Texture2D" uid="uid://dqr5i7lonxqbj" path="res://Textures/enemy_go_fast.png" id="5_nfq5w"]
 [ext_resource type="Texture2D" uid="uid://cxkc4d5avlwov" path="res://Textures/gun.png" id="6_0u2oc"]
-[ext_resource type="Texture2D" uid="uid://dllcf7fyb4hcn" path="res://Textures/electricity.png" id="7_5ngbm"]
 [ext_resource type="PackedScene" uid="uid://dt13wxjfd6hxn" path="res://Objects/key.tscn" id="8_erdrk"]
+[ext_resource type="Texture2D" uid="uid://b8djx5jt6obth" path="res://Textures/lightning.png" id="9_p423c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_560yg"]
 radius = 29.0689
@@ -25,9 +25,9 @@ key_to_drop = ExtResource("8_erdrk")
 sprite_base = ExtResource("2_8mqhx")
 sprite_shy = ExtResource("3_inn11")
 sprite_strafe = ExtResource("4_uslow")
-health = 20
 sprite_still = ExtResource("2_8mqhx")
 sprite_go_fast = ExtResource("5_nfq5w")
+health = 20
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_8mqhx")
@@ -68,18 +68,17 @@ scale = Vector2(4, 4)
 texture = ExtResource("6_0u2oc")
 
 [node name="ParticlesElectricity" type="CPUParticles2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
 emitting = false
-amount = 12
-texture = ExtResource("7_5ngbm")
+amount = 10
+lifetime = 0.03
+texture = ExtResource("9_p423c")
 emission_shape = 2
 emission_sphere_radius = 32.0
 gravity = Vector2(2.08165e-12, 2.08165e-12)
-angular_velocity_min = -60.0
-angular_velocity_max = 60.0
-angle_min = -720.0
-angle_max = 720.0
-scale_amount_min = 2.0
-scale_amount_max = 3.0
+angle_min = -20.0
+angle_max = 20.0
+scale_amount_min = 0.5
 scale_amount_curve = SubResource("Curve_ne5pm")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

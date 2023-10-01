@@ -61,9 +61,6 @@ func _ready():
     $Gun.visible = gun
     _gun_cooldown = gun_cooldown
 
-    if electricity:
-        $Sprite2D.modulate = Color(0.5, 0.5, 1)
-
     super()
 
 var im_dead :=false
@@ -160,6 +157,7 @@ func _process(delta):
                 else:
                     electricity_on = true
                     _electricity_cooldown = electricity_time
+                    position+=Vector2(Util.rand_range_float(-10,10),Util.rand_range_float(-10,10))
                 $ParticlesElectricity.emitting = electricity_on
 
         #position += velocity * delta

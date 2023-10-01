@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnxolyy6vp8uo"]
+
+[ext_resource type="PackedScene" uid="uid://dup1w8why8n0u" path="res://Objects/Enemy.tscn" id="1_3uu01"]
+[ext_resource type="Texture2D" uid="uid://bxm2m7j4eu4gx" path="res://Textures/enemy_electric.png" id="2_jvc1j"]
+
+[node name="Enemy" instance=ExtResource("1_3uu01")]
+sprite_base = ExtResource("2_jvc1j")
+sprite_still = ExtResource("2_jvc1j")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_jvc1j")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+visible = false
+
+[node name="CollisionShape2D" parent="." index="3"]
+visible = false
+
+[node name="ParticlesElectricity" parent="." index="5"]
+emission_sphere_radius = 28.0

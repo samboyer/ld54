@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bht5qg7m7rfr8"]
+[gd_scene load_steps=3 format=3 uid="uid://bht5qg7m7rfr8"]
 
 [ext_resource type="PackedScene" uid="uid://liwkplx5rlx8" path="res://Objects/room.tscn" id="1_phdt3"]
+[ext_resource type="PackedScene" uid="uid://bnqmtl162mr1b" path="res://Objects/beehive_non_targetable.tscn" id="2_3h8ut"]
 
 [node name="ROOM" instance=ExtResource("1_phdt3")]
 
@@ -22,3 +23,7 @@ position = Vector2(6, -195)
 
 [node name="hwall" parent="Collision for Enemies" index="0"]
 position = Vector2(3, -219)
+
+[node name="Beehive2" parent="." index="8" instance=ExtResource("2_3h8ut")]
+position = Vector2(0, 220)
+health = 15

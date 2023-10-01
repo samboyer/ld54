@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cgrvo2f81b5j"]
+[gd_scene load_steps=46 format=3 uid="uid://cgrvo2f81b5j"]
 
 [ext_resource type="Script" path="res://Scripts/BeesManager.gd" id="1_86lkx"]
 [ext_resource type="PackedScene" uid="uid://b1d1r1dq3pp15" path="res://Objects/game_ui.tscn" id="1_rbdpo"]
@@ -12,10 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://vatelb1typeq" path="res://SFX/room change.mp3" id="6_wwame"]
 [ext_resource type="Script" path="res://Scripts/RoomManager.gd" id="7_ucf1y"]
 [ext_resource type="Texture2D" uid="uid://bll4220pettl8" path="res://Textures/smoke.png" id="8_07fwu"]
-[ext_resource type="PackedScene" uid="uid://dup1w8why8n0u" path="res://Objects/Enemy.tscn" id="8_lpshd"]
 [ext_resource type="Texture2D" uid="uid://ddm0e8btwfyy2" path="res://Textures/reticule_inactive.png" id="8_oxnrr"]
-[ext_resource type="PackedScene" uid="uid://rtqsqcxb4irh" path="res://Objects/Beehive.tscn" id="9_eu570"]
-[ext_resource type="PackedScene" uid="uid://dfos2w0cct7s5" path="res://Objects/Barrel.tscn" id="10_7imrv"]
 [ext_resource type="Script" path="res://BeatMatchTest.gd" id="13_87bt5"]
 [ext_resource type="Texture2D" uid="uid://dj7xr7eryncht" path="res://Textures/powerup-0.png" id="13_jijss"]
 [ext_resource type="Script" path="res://MusicManager.gd" id="14_2goav"]
@@ -132,101 +129,9 @@ script = ExtResource("1_wwsk7")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Camera2D" groups=["CanvasModulate"]]
 
-[node name="1" type="Node2D" parent="." node_paths=PackedStringArray("room_num_label", "room_swoosh_sfx", "bm", "mm") groups=["RoomManager"]]
+[node name="RoomManager" type="Node2D" parent="." groups=["RoomManager"]]
 script = ExtResource("7_ucf1y")
 ROOM_TRANSITION_TIME_SECS = 1.0
 room_starting = ExtResource("4_k6gwd")
 room_main = ExtResource("5_jk71d")
-enemy_objects = Array[PackedScene]([ExtResource("8_lpshd")])
-enemy_object_hardnesses = Array[int]([3])
-neutral_room_objects = Array[PackedScene]([ExtResource("9_eu570"), ExtResource("10_7imrv"), ExtResource("10_7imrv")])
-room_num_label = NodePath("RoomTransitionLabel")
-room_swoosh_sfx = NodePath("AudioStreamPlayer")
-bm = NodePath("../BeesManager")
-mm = NodePath("../I AM THE MUSIC MAN")
-
-[node name="RoomTransitionLabel" type="Label" parent="1"]
-visible = false
-z_index = 1000
-offset_left = -400.0
-offset_top = -300.0
-offset_right = 400.0
-offset_bottom = 300.0
-theme_override_fonts/font = ExtResource("5_sf16f")
-theme_override_font_sizes/font_size = 500
-text = "VXIII"
-horizontal_alignment = 1
-vertical_alignment = 1
-clip_text = true
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="1"]
-stream = ExtResource("6_wwame")
-
-[node name="BeesManager" type="Node2D" parent="." node_paths=PackedStringArray("camera", "com_object", "bee_fire_sfx", "bee_die_sfx", "game_over_sfx", "game_over_panel", "mm", "rm", "label_gameover_rooms", "label_gameover_num_killed") groups=["BeesManager"]]
-script = ExtResource("1_86lkx")
-attack_cooldown = 0.5
-attack_jitter = 25.0
-camera = NodePath("../Camera2D")
-com_object = NodePath("centre_of_mass")
-bee_fire_sfx = NodePath("bee_shoot")
-bee_die_sfx = NodePath("bee_die")
-game_over_sfx = NodePath("game_over")
-game_over_panel = NodePath("../GAME OVER SCREEN")
-mm = NodePath("../I AM THE MUSIC MAN")
-rm = NodePath("../1")
-label_gameover_rooms = NodePath("../GAME OVER SCREEN/rooms cleared")
-label_gameover_num_killed = NodePath("../GAME OVER SCREEN/enemies killed")
-
-[node name="Reticule" type="Node2D" parent="BeesManager"]
-visible = false
-z_index = 25
-script = ExtResource("4_kaefo")
-sprite_active = ExtResource("3_7vrma")
-sprite_inactive = ExtResource("8_oxnrr")
-
-[node name="ReticuleOuter" type="Sprite2D" parent="BeesManager/Reticule"]
-scale = Vector2(2, 2)
-texture = ExtResource("3_7vrma")
-
-[node name="ReticuleInner" type="Sprite2D" parent="BeesManager/Reticule"]
-scale = Vector2(1.4, 1.4)
-texture = ExtResource("3_7vrma")
-
-[node name="centre_of_mass" type="Area2D" parent="BeesManager" groups=["bee_centre_of_mass"]]
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BeesManager/centre_of_mass"]
-shape = SubResource("CircleShape2D_joq52")
-
-[node name="Smoke" type="Sprite2D" parent="BeesManager/centre_of_mass"]
-visible = false
-texture = ExtResource("8_07fwu")
-
-[node name="bee_shoot" type="AudioStreamPlayer" parent="BeesManager"]
-stream = ExtResource("15_72uug")
-volume_db = -6.0
-
-[node name="bee_die" type="AudioStreamPlayer" parent="BeesManager"]
-stream = ExtResource("14_6ux7t")
-
-[node name="game_over" type="AudioStreamPlayer" parent="BeesManager"]
-stream = ExtResource("15_enrrg")
-
-[node name="PowerupIcon" type="Sprite2D" parent="BeesManager"]
-visible = false
-z_index = 800
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("13_jijss")
-
-[node name="I AM THE MUSIC MAN" type="Node2D" parent="." node_paths=PackedStringArray("beat_match_effect")]
-script = ExtResource("14_2goav")
-initial_music_layers = Array[AudioStream]([ExtResource("24_ttevy"), ExtResource("19_dwoly"), ExtResource("20_qb6tm"), ExtResource("21_ag17h"), ExtResource("22_2co17"), ExtResource("23_hnq8k"), ExtResource("25_3pa5i")])
-latter_music_layers = Array[AudioStream]([ExtResource("31_u82ar"), ExtResource("26_tm3je"), ExtResource("27_ulrvy"), ExtResource("28_u27em"), ExtResource("29_tvxga"), ExtResource("30_laghh"), ExtResource("32_3lvlc"), ExtResource("33_6kugr"), ExtResource("34_ljbbo"), ExtResource("35_brrya"), ExtResource("36_yplid"), ExtResource("37_cdi8m"), ExtResource("38_h77nt"), ExtResource("39_riodp"), ExtResource("40_lf15g"), ExtResource("41_u061r"), ExtResource("42_cbv1l"), ExtResource("43_v6pa0")])
-beat_match_effect = NodePath("Beat match effects")
-
-[node name="Beat match effects" type="Node2D" parent="I AM THE MUSIC MAN" node_paths=PackedStringArray("cam")]
-script = ExtResource("13_87bt5")
-cam = NodePath("../../Camera2D")
-
-[connection signal="pressed" from="GAME OVER SCREEN/mock main menu/Button" to="GAME OVER SCREEN/mock main menu" method="_reload_scene"]
+room_num_label = Object(Label,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":false,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":1000,"z_as

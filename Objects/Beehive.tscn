@@ -1,5 +1,146 @@
-[gd_scene load_steps=2 format=3 uid="uid://rtqsqcxb4irh"]
+[gd_scene load_steps=12 format=3 uid="uid://rtqsqcxb4irh"]
 
 [ext_resource type="PackedScene" uid="uid://dfos2w0cct7s5" path="res://Objects/Barrel.tscn" id="1_uvwir"]
+[ext_resource type="Script" path="res://Objects/Beehive.gd" id="2_6swwg"]
+[ext_resource type="Texture2D" uid="uid://ua0xbwscqys7" path="res://Textures/hive_bottom.png" id="2_nkc3s"]
+[ext_resource type="Texture2D" uid="uid://brjr87w7j0buf" path="res://Textures/hive_top.png" id="3_p6l6a"]
+[ext_resource type="Texture2D" uid="uid://dk0xiq56t015x" path="res://Textures/bee.png" id="3_rd4sp"]
+[ext_resource type="Texture2D" uid="uid://dl1kvol6fnvf6" path="res://Textures/1x1_white.png" id="6_olpvy"]
 
-[node name="Barrel" instance=ExtResource("1_uvwir")]
+[sub_resource type="Curve" id="Curve_efdqy"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.979972, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -5.04074, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_huoiv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D TOP:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, -26)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D TOP:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_weq4x"]
+resource_name = "beehive_open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D TOP:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.307016, 0.427888, 0.530542),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2.08165e-12, -26), Vector2(-40, -58), Vector2(-74.4735, 7.12711), Vector2(-73.0633, -5.09482), Vector2(-72, 12)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D TOP:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.449961),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -3.65472]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ss8br"]
+_data = {
+"RESET": SubResource("Animation_huoiv"),
+"beehive_open": SubResource("Animation_weq4x")
+}
+
+[sub_resource type="Gradient" id="Gradient_ibx56"]
+colors = PackedColorArray(1, 1, 1, 0.584314, 1, 1, 1, 0)
+
+[node name="Beehive" instance=ExtResource("1_uvwir")]
+script = ExtResource("2_6swwg")
+NUM_EXTRA_BEES = 15
+health = 10
+death_cooldown = 1e+06
+
+[node name="BeeParticles2" type="CPUParticles2D" parent="." index="0"]
+position = Vector2(0, -24)
+amount = 10
+texture = ExtResource("3_rd4sp")
+emission_shape = 1
+emission_sphere_radius = 30.0
+spread = 180.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+radial_accel_min = -600.0
+radial_accel_max = -600.0
+damping_min = 20.0
+damping_max = 30.0
+scale_amount_min = 0.5
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_efdqy")
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_nkc3s")
+
+[node name="Sprite2D TOP" type="Sprite2D" parent="." index="2"]
+position = Vector2(-1, -26)
+scale = Vector2(1.65, 1.65)
+texture = ExtResource("3_p6l6a")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_ss8br")
+}
+
+[node name="BeeParticles" type="CPUParticles2D" parent="." index="4"]
+position = Vector2(0, -24)
+amount = 10
+texture = ExtResource("3_rd4sp")
+emission_shape = 1
+emission_sphere_radius = 30.0
+spread = 180.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+radial_accel_min = -600.0
+radial_accel_max = -600.0
+damping_min = 20.0
+damping_max = 30.0
+scale_amount_min = 0.5
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_efdqy")
+
+[node name="Particles" parent="." index="5"]
+position = Vector2(0, -10)
+amount = 20
+texture = ExtResource("6_olpvy")
+emission_rect_extents = Vector2(20, 5)
+direction = Vector2(2.08165e-12, -1)
+spread = 26.62
+gravity = Vector2(2.08165e-12, 900)
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(1, 1, 0.847059, 1)
+color_ramp = SubResource("Gradient_ibx56")

@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bfx2onk2tucbc" path="res://Textures/key.png" id="5_t7neb"]
 [ext_resource type="Texture2D" uid="uid://c15csurjju7bp" path="res://Textures/key_highlihgt.png" id="6_6467q"]
 [ext_resource type="PackedScene" uid="uid://dup1w8why8n0u" path="res://Objects/Enemy.tscn" id="7_hl4q4"]
-[ext_resource type="PackedScene" path="res://Objects/Barrel.tscn" id="8_cu8jk"]
+[ext_resource type="PackedScene" uid="uid://dfos2w0cct7s5" path="res://Objects/Barrel.tscn" id="8_cu8jk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kl8r7"]
 size = Vector2(20, 32)
@@ -61,7 +61,12 @@ enemy_type = 1
 position = Vector2(58, 54)
 enemy_type = 2
 
-[node name="Barrel" parent="." index="13" instance=ExtResource("8_cu8jk")]
+[node name="Enemy4" parent="." index="13" instance=ExtResource("7_hl4q4")]
+position = Vector2(66, 197)
+enemy_type = 2
+gun = true
+
+[node name="Barrel" parent="." index="14" instance=ExtResource("8_cu8jk")]
 position = Vector2(-102, 30)
 
 [connection signal="area_entered" from="Keyhole" to="Keyhole" method="_on_area_entered"]

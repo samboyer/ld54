@@ -30,7 +30,7 @@ func _ready():
 func _process(delta: float):
     if collected:
         _collected_countdown -= delta
-        $Sprite2D.modulate.a = 0#_collected_countdown ** 2
+        $Sprite2D.modulate.a = 0
         if _collected_countdown <= 0:
             queue_free()
 

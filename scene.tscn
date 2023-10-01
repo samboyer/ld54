@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://cgrvo2f81b5j"]
+[gd_scene load_steps=61 format=3 uid="uid://cgrvo2f81b5j"]
 
 [ext_resource type="Script" path="res://Scripts/BeesManager.gd" id="1_86lkx"]
 [ext_resource type="PackedScene" uid="uid://b1d1r1dq3pp15" path="res://Objects/game_ui.tscn" id="1_rbdpo"]
@@ -36,7 +36,9 @@
 [ext_resource type="AudioStream" uid="uid://3wmm68l0rcrp" path="res://Music/initial_layers/acid music 2 - drums top 1.wav.ogg" id="20_qb6tm"]
 [ext_resource type="AudioStream" uid="uid://c3rtx6wuui8pj" path="res://Music/initial_layers/acid music 2 - drums top 2.wav.ogg" id="21_ag17h"]
 [ext_resource type="AudioStream" uid="uid://0sumd6k2ywgx" path="res://Music/initial_layers/acid music 2 - drums top 3.wav.ogg" id="22_2co17"]
+[ext_resource type="Texture2D" uid="uid://cs300gc71rcmp" path="res://Textures/bee_rainbow.png" id="23_al8n6"]
 [ext_resource type="AudioStream" uid="uid://dye8vjdu1m1gj" path="res://Music/initial_layers/acid music 2 - drums top 4.wav.ogg" id="23_hnq8k"]
+[ext_resource type="Texture2D" uid="uid://dk0xiq56t015x" path="res://Textures/bee.png" id="24_oykbs"]
 [ext_resource type="AudioStream" uid="uid://dxhlar5tastot" path="res://Music/initial_layers/acid music 2 - kick.wav.ogg" id="24_ttevy"]
 [ext_resource type="AudioStream" uid="uid://3c1w06282ne2" path="res://Music/initial_layers/acid music 2 - sfx 1.wav.ogg" id="25_3pa5i"]
 [ext_resource type="AudioStream" uid="uid://du8dvdtbjf2gc" path="res://Music/latter_layers/acid music 2 - bass 1.wav.ogg" id="26_tm3je"]
@@ -186,6 +188,8 @@ mm = NodePath("../I AM THE MUSIC MAN")
 rm = NodePath("../RoomManager")
 label_gameover_rooms = NodePath("../GAME OVER SCREEN/rooms cleared")
 label_gameover_num_killed = NodePath("../GAME OVER SCREEN/enemies killed")
+bee_texture_rainbow = ExtResource("23_al8n6")
+bee_texture_normal = ExtResource("24_oykbs")
 
 [node name="Reticule" type="Node2D" parent="BeesManager"]
 visible = false

@@ -43,6 +43,9 @@ var _powerup_icon: float = 0.0
 @export var label_gameover_rooms:Label
 @export var label_gameover_num_killed:Label
 
+@export var bee_texture_rainbow:Texture2D
+@export var bee_texture_normal:Texture2D
+
 var reticule: Node2D
 var centre_of_mass:Vector2 = Vector2.ZERO
 
@@ -178,10 +181,12 @@ func _process(delta):
         var i: int = 0
         for b in get_tree().get_nodes_in_group("bees"):
             # Shift hue
+            b.get_node("Sprite2D").texture = bee_texture_rainbow
             b.modulate = Color.from_hsv((_powerup_invuln * 3) + (i / 1.618), 1, 1)
             i += 1
     else:
         for b in get_tree().get_nodes_in_group("bees"):
+            b.get_node("Sprite2D").texture = bee_texture_normal
             b.modulate = Color(1, 1, 1)
 
     _attack_cooldown_counter = max(_attack_cooldown_counter - delta, 0.0)

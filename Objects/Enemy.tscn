@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dup1w8why8n0u"]
+[gd_scene load_steps=13 format=3 uid="uid://dup1w8why8n0u"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_3fn8u"]
 [ext_resource type="Texture2D" uid="uid://cikfsviepaxhu" path="res://Textures/enemy.png" id="2_8mqhx"]
@@ -9,13 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://cxkc4d5avlwov" path="res://Textures/gun.png" id="6_0u2oc"]
 [ext_resource type="PackedScene" uid="uid://dt13wxjfd6hxn" path="res://Objects/key.tscn" id="8_erdrk"]
 [ext_resource type="Texture2D" uid="uid://b8djx5jt6obth" path="res://Textures/lightning.png" id="9_p423c"]
+[ext_resource type="Texture2D" uid="uid://26ma8fpvn242" path="res://Textures/acid splat.png" id="10_lr82k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_560yg"]
 radius = 29.0689
 
 [sub_resource type="Curve" id="Curve_ne5pm"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.754107), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.967433, 0.982944), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 68
@@ -80,5 +81,20 @@ angle_min = -20.0
 angle_max = 20.0
 scale_amount_min = 0.5
 scale_amount_curve = SubResource("Curve_ne5pm")
+
+[node name="ParticlesAcidTrail" type="CPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(1, 17)
+amount = 300
+lifetime = 10.0
+texture = ExtResource("10_lr82k")
+emission_shape = 1
+emission_sphere_radius = 8.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+angle_max = 360.0
+scale_amount_min = 0.5
+scale_amount_max = 1.5
+scale_amount_curve = SubResource("Curve_ne5pm")
+color = Color(0.694118, 1, 0.541176, 1)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

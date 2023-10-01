@@ -145,8 +145,7 @@ room_swoosh_sfx = NodePath("AudioStreamPlayer")
 bm = NodePath("../BeesManager")
 mm = NodePath("../I AM THE MUSIC MAN")
 
-[node name="RoomTransitionLabel" type="Label" parent="1"]
-visible = false
+[node name="RoomTransitionLabel" type="Label" parent="RoomManager"]
 z_index = 1000
 offset_left = -400.0
 offset_top = -300.0
@@ -158,6 +157,7 @@ text = "VXIII"
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
+visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="1"]
 stream = ExtResource("6_wwame")

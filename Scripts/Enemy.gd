@@ -139,7 +139,7 @@ func _process(delta):
 
         if gun:
             _gun_cooldown -= delta
-            var dir = (bm.centre_of_mass - global_position).normalized()
+            var dir = (get_global_mouse_position() - global_position).normalized()
             if _gun_cooldown <= 0:
                 _gun_cooldown = gun_cooldown
                 var bullet = bulletObj.instantiate()
@@ -167,7 +167,7 @@ func _process(delta):
 
 func damage(amount: int, source: Bee):
     if electricity_on:
-        source.kill(true)
+        source.kill(not bm.invulnerable)
 
     super(amount, source)
 

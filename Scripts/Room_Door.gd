@@ -16,6 +16,12 @@ var door_rumble_sfx:AudioStreamPlayer=null
 @export
 var door_slam_sfx:AudioStreamPlayer=null
 
+@export
+var should_auto_open:=false
+@export
+var auto_open_time:=3.0
+
+
 var start_pos:float=0
 var door_opening:=false
 var door_opened:=false
@@ -23,6 +29,8 @@ var door_anim_t:=0.0
 
 var camera=null
 var rm:RoomManager = null;
+
+var alive_time :=0.0
 
 func _ready():
 	camera = get_tree().get_first_node_in_group("cameras")
@@ -41,6 +49,7 @@ func end_door_open():
 	door_opening=false
 	door_anim_t=0
 	camera.jitter(DOOR_FINISH_CAMERA_SHAKE)
+	door_rumble_sfx.stop()
 	door_slam_sfx.play()
 
 func _process(delta):
@@ -52,6 +61,9 @@ func _process(delta):
 		camera.jitter(DOOR_MOVE_CAMERA_SHAKE)
 		if door_anim_t>=1:
 			end_door_open()
+	alive_time+=delta
+	if should_auto_open and alive_time>1:
+		start_door_open()
 
 # func _input(event):
 #     if (event is InputEventMouseButton

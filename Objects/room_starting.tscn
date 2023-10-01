@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bht5qg7m7rfr8"]
+
+[ext_resource type="PackedScene" uid="uid://liwkplx5rlx8" path="res://Objects/room.tscn" id="1_phdt3"]
+
+[node name="ROOM" instance=ExtResource("1_phdt3")]
+
+[node name="DOOR" parent="." index="3"]
+should_auto_open = true
+auto_open_time = 5.0

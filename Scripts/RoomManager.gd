@@ -11,7 +11,12 @@ var ROOM_TRANSITION_TIME_SECS:= 0.5
 var SCREEN_HEIGHT:= 600
 
 @export
-var ROOM_PREFAB:PackedScene=null
+var room_starting:PackedScene=null
+@export
+var room_tutorials:Array[PackedScene]=[]
+
+@export
+var room_main:PackedScene=null
 
 @export
 var room_num_label:Label=null
@@ -29,7 +34,11 @@ var rooms_reached := -1
 var roman_numerals =["I","II","III","IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII", "XXIII", "XXIV", "XXV", "XXVI", "XXVII", "XXVIII", "XXIX", "XXX", "XXXI", "XXXII", "XXXIII", "XXXIV", "XXXV", "XXXVI", "XXXVII", "XXXVIII", "XXXIX", "XL", "XLI", "XLII", "XLIII", "XLIV", "XLV", "XLVI", "XLVII", "XLVIII", "XLIX", "L", "LI", "LII", "LIII", "LIV", "LV", "LVI", "LVII", "LVIII", "LIX", "LX", "LXI", "LXII", "LXIII", "LXIV", "LXV", "LXVI", "LXVII", "LXVIII", "LXIX", "LXX", "LXXI", "LXXII", "LXXIII", "LXXIV", "LXXV", "LXXVI", "LXXVII", "LXXVIII", "LXXIX", "LXXX", "LXXXI", "LXXXII", "LXXXIII", "LXXXIV", "LXXXV", "LXXXVI", "LXXXVII", "LXXXVIII", "LXXXIX", "XC", "XCI", "XCII", "XCIII", "XCIV", "XCV", "XCVI", "XCVII", "XCVIII", "XCIX", "C"]
 
 func load_next_room():
-	var new_room:=ROOM_PREFAB.instantiate()
+	var new_room = null
+	if rooms_reached == -1:
+		new_room=room_starting.instantiate()
+	else:
+		new_room=room_main.instantiate()
 	# @@@ Apply room variations here
 	# Choose a random colour
 	next_color = Color.from_hsv(randf(),randf()*0.1+0.05,1)

@@ -1,15 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://cgrvo2f81b5j"]
+[gd_scene load_steps=13 format=3 uid="uid://cgrvo2f81b5j"]
 
 [ext_resource type="Script" path="res://Scripts/BeesManager.gd" id="1_86lkx"]
 [ext_resource type="PackedScene" uid="uid://b1d1r1dq3pp15" path="res://Objects/game_ui.tscn" id="1_rbdpo"]
 [ext_resource type="Script" path="res://Scripts/CameraController.gd" id="1_wwsk7"]
 [ext_resource type="Texture2D" uid="uid://4kj685im4sft" path="res://Textures/reticule.png" id="3_7vrma"]
+[ext_resource type="PackedScene" uid="uid://bht5qg7m7rfr8" path="res://Objects/room_starting.tscn" id="4_k6gwd"]
 [ext_resource type="Script" path="res://Scripts/Reticule.gd" id="4_kaefo"]
+[ext_resource type="PackedScene" uid="uid://do0tf23x6jrxe" path="res://Objects/room_test.tscn" id="5_jk71d"]
 [ext_resource type="FontFile" uid="uid://cmd4ci37y7hqb" path="res://Textures/DINAlternate-Bold.ttf" id="5_sf16f"]
 [ext_resource type="AudioStream" uid="uid://vatelb1typeq" path="res://SFX/room change.mp3" id="6_wwame"]
 [ext_resource type="Script" path="res://Scripts/RoomManager.gd" id="7_ucf1y"]
 [ext_resource type="Texture2D" uid="uid://bll4220pettl8" path="res://Textures/smoke.png" id="8_07fwu"]
-[ext_resource type="PackedScene" uid="uid://liwkplx5rlx8" path="res://Objects/room.tscn" id="8_em0jb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_joq52"]
 
@@ -26,7 +27,8 @@ script = ExtResource("1_wwsk7")
 [node name="RoomManager" type="Node2D" parent="." node_paths=PackedStringArray("room_num_label", "room_swoosh_sfx", "bm") groups=["RoomManager"]]
 script = ExtResource("7_ucf1y")
 ROOM_TRANSITION_TIME_SECS = 1.0
-ROOM_PREFAB = ExtResource("8_em0jb")
+room_starting = ExtResource("4_k6gwd")
+room_main = ExtResource("5_jk71d")
 room_num_label = NodePath("RoomTransitionLabel")
 room_swoosh_sfx = NodePath("AudioStreamPlayer")
 bm = NodePath("../BeesManager")

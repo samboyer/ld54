@@ -9,3 +9,6 @@ func rand_range_float(min_val: float, max_val: float) -> float:
 func cubic_ease_out(t: float) -> float:
     var f = (t - 1)
     return f * f * f + 1
+
+# global flags that persist inbetween games
+var FLAGS=[]

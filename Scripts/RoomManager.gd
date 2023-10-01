@@ -30,7 +30,7 @@ var enemy_object_total_weight: int = 0
 @export
 var neutral_room_objects:Array[PackedScene]=[]
 
-@export var enemy_health_base: int = 25
+@export var enemy_health_base: int = 40
 
 @export
 var max_neutral_objects_per_room:int=2
@@ -38,6 +38,8 @@ var max_neutral_objects_per_room:int=2
 var hardness_per_room:int=4 #how much 'total hardness' goes up per room
 @export
 var all_one_enemy_room_chance: float = 0.3
+@export
+var max_enemies_per_room: int = 20
 
 @export
 var room_num_label:Label=null
@@ -79,14 +81,13 @@ func populate_room(new_room:Node):
 
     # neutral objects
     var num_neutral := 0
-    if Util.rand_range_float(0, 1) < 0.3:
-        num_neutral = 1
-        if Util.rand_range_float(0, 1) < 0.3:
-            num_neutral = 2
+    if Util.rand_range_float(0, 1) < 0.2:
+        num_neutral += 1
     for i in range(num_neutral):
         var j = Util.rand_range(1, len(neutral_room_objects))
         var obj = neutral_room_objects[j].instantiate()
         obj.position = Vector2(Util.rand_range_float(-350,350), Util.rand_range_float(-20,280))
+        obj.health = min((bm.average_damage / 5.0) * enemy_health_base, enemy_health_base) * 0.5
         new_room.add_child(obj)
 
     if hive_pity_roll:
@@ -96,6 +97,7 @@ func populate_room(new_room:Node):
         for i in range(num_hives):
             var obj = neutral_room_objects[0].instantiate()
             obj.position = Vector2(Util.rand_range_float(-150,150), Util.rand_range_float(-20,180))
+            obj.health = min((bm.average_damage / 5.0) * enemy_health_base, enemy_health_base) * 0.5
             new_room.add_child(obj)
 
     if hive_pity_roll:
@@ -110,22 +112,32 @@ func populate_room(new_room:Node):
         if Util.rand_range_float(0, 1) < all_one_enemy_room_chance:
             var i = Util.weighted_random_choice(enemy_object_weights,enemy_object_total_weight)
             var to_spawn: int = max(float(room_hardness) / enemy_object_hardnesses[i], 2)
+            if to_spawn > max_enemies_per_room:
+                enemy_health *= float(to_spawn) / max_enemies_per_room
+                to_spawn = max_enemies_per_room
             for j in range(int(to_spawn)):
                 var obj = enemy_objects[i].instantiate()
                 obj.health = int(enemy_health * Util.rand_range_float(0.8, 1.2))
                 obj.position = Vector2(Util.rand_range_float(-350,350), Util.rand_range_float(-20,280))
                 new_room.add_child(obj)
         else:
+            var enemy_count = 0
             while hardness < room_hardness:
                 var i = Util.weighted_random_choice(enemy_object_weights,enemy_object_total_weight)
                 var obj_hardness = enemy_object_hardnesses[i]
                 if hardness + obj_hardness > room_hardness:
                     continue
                 hardness += obj_hardness
-                var obj = enemy_objects[i].instantiate()
-                obj.health = int(enemy_health * Util.rand_range_float(0.8, 1.2))
-                obj.position = Vector2(Util.rand_range_float(-350,350), Util.rand_range_float(-20,280))
-                new_room.add_child(obj)
+                if enemy_count <= max_enemies_per_room:
+                    var obj = enemy_objects[i].instantiate()
+                    obj.health = int(enemy_health * Util.rand_range_float(0.8, 1.2))
+                    obj.position = Vector2(Util.rand_range_float(-350,350), Util.rand_range_float(-20,280))
+                    new_room.add_child(obj)
+                    enemy_count += 1
+                else:
+                    for node in new_room.get_children():
+                        if node.is_in_group("enemy"):
+                            node.health += int(enemy_health * Util.rand_range_float(1.1, 1.3))
 
     # Choose a random screen colour
     next_color = Color.from_hsv(randf(),randf()*0.1+0.05,1)

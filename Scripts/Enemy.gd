@@ -7,7 +7,7 @@ extends Targetable
 @export var charge_speed: float = 0.3
 @export var cooldown_time: float = 2.0
 @export var jitter: float = 0.5
-@export var powerup_chance: float = 0.2
+@export var powerup_chance: float = 0.08
 enum EnemyType { BASE, SHY, STRAFE, STILL, GO_FAST }
 @export var enemy_type: EnemyType = EnemyType.BASE
 

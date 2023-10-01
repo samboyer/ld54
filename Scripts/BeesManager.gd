@@ -139,7 +139,7 @@ func powerup(powerup_type: Powerup.PowerupType):
             $PowerupIcon.texture = load("res://Textures/powerup-0.png")
         Powerup.PowerupType.Power:
             for b in get_tree().get_nodes_in_group("bees"):
-                b.damage *= 1.3
+                b.damage *= 1.2
             $PowerupIcon.texture = load("res://Textures/powerup-1.png")
         Powerup.PowerupType.Auto:
             _powerup_auto = powerup_duration

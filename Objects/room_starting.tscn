@@ -5,25 +5,25 @@
 
 [node name="ROOM" instance=ExtResource("1_phdt3")]
 
-[node name="next level area" parent="." index="2"]
+[node name="next level area" parent="." index="4"]
 position = Vector2(30, -133)
 
 [node name="CollisionShape2D" parent="next level area" index="0"]
 position = Vector2(-6, -85)
 
-[node name="DOOR" parent="." index="3"]
+[node name="DOOR" parent="." index="5"]
 position = Vector2(0, -78)
 should_auto_open = true
 
-[node name="RoomBgDoor" parent="." index="4"]
+[node name="RoomBgDoor" parent="." index="6"]
 position = Vector2(12, -200)
 
-[node name="RoomBgDoor2" parent="." index="5"]
+[node name="RoomBgDoor2" parent="." index="7"]
 position = Vector2(6, -195)
-
-[node name="hwall" parent="Collision for Enemies" index="0"]
-position = Vector2(3, -219)
 
 [node name="Beehive2" parent="." index="8" instance=ExtResource("2_3h8ut")]
 position = Vector2(0, 220)
 health = 15
+
+[node name="hwall" parent="Collision for Enemies" index="0"]
+position = Vector2(3, -219)

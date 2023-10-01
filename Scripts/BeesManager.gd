@@ -41,6 +41,7 @@ var reticule: Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
     label_hp = get_tree().get_first_node_in_group('hp_number')
+    powerup_bar = get_tree().get_first_node_in_group('powerup_bar')
 
     for i in range(STARTING_NUM_BEES):
         var x = beeObj.instantiate()

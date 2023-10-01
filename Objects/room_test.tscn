@@ -48,7 +48,15 @@ position = Vector2(66, 197)
 enemy_type = 2
 gun = true
 
-[node name="Barrel" parent="." index="12" instance=ExtResource("8_cu8jk")]
+[node name="Enemy5" parent="." index="12" instance=ExtResource("7_hl4q4")]
+enemy_type = 3
+electricity = true
+
+[node name="Enemy6" parent="." index="13" instance=ExtResource("7_hl4q4")]
+position = Vector2(264, -26)
+enemy_type = 4
+
+[node name="Barrel" parent="." index="14" instance=ExtResource("8_cu8jk")]
 position = Vector2(-102, 30)
 
 [connection signal="area_entered" from="DOOR/Keyhole" to="DOOR/Keyhole" method="_on_area_entered"]

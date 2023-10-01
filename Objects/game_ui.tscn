@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1d1r1dq3pp15"]
+[gd_scene load_steps=6 format=3 uid="uid://b1d1r1dq3pp15"]
 
 [ext_resource type="Material" uid="uid://bjv6skt4x4gnp" path="res://no_modulate.tres" id="1_2y2un"]
 [ext_resource type="Texture2D" uid="uid://6gvvmmvnahrw" path="res://Textures/ui_hb_hd.png" id="1_tyitc"]
 [ext_resource type="Texture2D" uid="uid://culbu3y8gback" path="res://Textures/bee_sillhouette.png" id="2_vk2nr"]
 [ext_resource type="FontFile" uid="uid://cmd4ci37y7hqb" path="res://Textures/DINAlternate-Bold.ttf" id="3_3vocj"]
+[ext_resource type="Texture2D" uid="uid://csklkhayaekud" path="res://Textures/ui_powerup.png" id="5_eexvs"]
 
 [node name="UI" type="Node2D"]
 
@@ -48,3 +49,25 @@ theme_override_colors/font_color = Color(0.54902, 0.435294, 0.32549, 1)
 theme_override_fonts/font = ExtResource("3_3vocj")
 theme_override_font_sizes/font_size = 48
 text = "HB"
+
+[node name="PowerupBar" type="Node2D" parent="." groups=["powerup_bar"]]
+visible = false
+z_index = 999
+position = Vector2(-152, -280)
+
+[node name="Sprite2D" type="Sprite2D" parent="PowerupBar"]
+material = ExtResource("1_2y2un")
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_eexvs")
+
+[node name="Polygon2D2" type="Polygon2D" parent="PowerupBar"]
+material = ExtResource("1_2y2un")
+position = Vector2(-99, 1)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(0, -13, 176, -13, 176, 12, 0, 12)
+
+[node name="Bar" type="Polygon2D" parent="PowerupBar"]
+material = ExtResource("1_2y2un")
+position = Vector2(-99, 1)
+color = Color(1, 0.384314, 0.266667, 1)
+polygon = PackedVector2Array(0, -13, 176, -13, 176, 12, 0, 12)

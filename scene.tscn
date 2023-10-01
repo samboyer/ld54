@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cgrvo2f81b5j"]
+[gd_scene load_steps=15 format=3 uid="uid://cgrvo2f81b5j"]
 
 [ext_resource type="Script" path="res://Scripts/BeesManager.gd" id="1_86lkx"]
 [ext_resource type="PackedScene" uid="uid://b1d1r1dq3pp15" path="res://Objects/game_ui.tscn" id="1_rbdpo"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://Scripts/RoomManager.gd" id="7_ucf1y"]
 [ext_resource type="Texture2D" uid="uid://bll4220pettl8" path="res://Textures/smoke.png" id="8_07fwu"]
 [ext_resource type="Texture2D" uid="uid://ddm0e8btwfyy2" path="res://Textures/reticule_inactive.png" id="8_oxnrr"]
+[ext_resource type="Texture2D" uid="uid://dj7xr7eryncht" path="res://Textures/powerup-0.png" id="13_jijss"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_joq52"]
 
@@ -83,3 +84,9 @@ shape = SubResource("CircleShape2D_joq52")
 [node name="Smoke" type="Sprite2D" parent="BeesManager/centre_of_mass"]
 visible = false
 texture = ExtResource("8_07fwu")
+
+[node name="PowerupIcon" type="Sprite2D" parent="BeesManager"]
+visible = false
+z_index = 800
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("13_jijss")

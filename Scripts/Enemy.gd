@@ -9,6 +9,8 @@ extends Targetable
 enum EnemyType { BASE, SHY, STRAFE }
 @export var enemy_type: EnemyType = EnemyType.BASE
 
+@export var key_to_drop:PackedScene
+
 @export_group("Sprites")
 @export var sprite_base: Texture2D
 @export var sprite_shy: Texture2D
@@ -36,9 +38,23 @@ func _ready():
 
     super()
 
+var im_dead :=false
+
 func on_death():
+    im_dead = true
     $Sprite2D.visible = false
     $Particles.emitting = true
+
+    # if all other enemies are dead, spawn a key at this position
+    var all_dead := true
+    for e in get_tree().get_nodes_in_group('enemy'):
+        all_dead = all_dead and e.im_dead
+    if all_dead:
+        var key:=key_to_drop.instantiate()
+        key.position = position
+        get_parent().add_child(key)
+
+
 
 func choose_target():
     _direction = (get_global_mouse_position() - global_position).normalized()

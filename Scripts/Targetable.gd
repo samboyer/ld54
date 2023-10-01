@@ -9,7 +9,7 @@ var dead: bool = false
 func _ready():
     self.add_to_group("targetable")
 
-func damage(amount):
+func damage(amount: int, source: Bee):
     health -= amount
     if health <= 0:
         dead = true

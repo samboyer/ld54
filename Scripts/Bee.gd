@@ -34,11 +34,12 @@ func _ready():
     crit = base_crit
 
 # Called when the bee is killed
-func kill():
+# Override is used if the bee should die even if attacking
+func kill(override: bool = false):
     var rm:RoomManager = get_tree().get_first_node_in_group('RoomManager')
     if rm.room_transitioning:
         return
-    if not attacking:
+    if not attacking or override:
         for child in get_children():
             if child is Key:
                 child.key_picked_up = false
@@ -72,7 +73,9 @@ func attack(target: Targetable) -> float:
     particles.restart()
 
     _attack_cooldown_counter = attack_cooldown
+
     position = target_position
+
     velocity = dir * 10000
 
     var damage_amount := damage * Util.rand_range_float(1 - (damage_spread / 2), 1 + (damage_spread / 2))
@@ -91,6 +94,7 @@ func attack(target: Targetable) -> float:
         return crit_roll
     else:
         return 0.0
+
 
 func _process(delta):
     if attacking:

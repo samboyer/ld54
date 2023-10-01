@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://rf7ixemated8"]
+
+[ext_resource type="PackedScene" uid="uid://dup1w8why8n0u" path="res://Objects/Enemy.tscn" id="1_lqq8l"]
+
+[node name="Enemy" instance=ExtResource("1_lqq8l")]
+gun = true

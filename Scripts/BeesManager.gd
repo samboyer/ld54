@@ -21,7 +21,7 @@ var SHOOT_PULL_INWARD: float = 0.5
 @export var attack_jitter: float = 100.0
 @export var iframes: float = 0.05
 @export var attack_range: float = 250
-@export var powerup_duration: float = 10.0
+@export var powerup_duration: float = 5.0
 var invulnerable: bool = false
 var _iframes: float = 0.0
 var _attacking: bool = false
@@ -45,6 +45,8 @@ var _powerup_icon: float = 0.0
 
 var reticule: Node2D
 var centre_of_mass:Vector2 = Vector2.ZERO
+
+var average_damage: float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -130,7 +132,7 @@ func damage():
 func powerup(powerup_type: Powerup.PowerupType):
     match powerup_type:
         Powerup.PowerupType.Speed:
-            attack_cooldown *= 0.8
+            attack_cooldown = ((attack_cooldown - (_attack_cooldown_base / 4)) * 0.9) + (_attack_cooldown_base / 4)
             $PowerupIcon.texture = load("res://Textures/powerup-0.png")
         Powerup.PowerupType.Power:
             for b in get_tree().get_nodes_in_group("bees"):
@@ -191,16 +193,16 @@ func _process(delta):
             fire_a_bee()
 
     centre_of_mass = Vector2.ZERO
-    var damage_for_ui: float = 0.0
+    average_damage = 0.0
     for b in get_tree().get_nodes_in_group("bees"):
         centre_of_mass += b.position
-        damage_for_ui += b.damage
+        average_damage += b.damage
     if num_bees > 0:
-        damage_for_ui /= num_bees
+        average_damage /= num_bees
     centre_of_mass /= num_bees
     com_object.position = centre_of_mass
 
     # Update ui
     label_hp.text = str(num_bees)
-    label_dmg.text = str(damage_for_ui).pad_decimals(2)
+    label_dmg.text = str(average_damage).pad_decimals(2)
     label_cooldown.text = str(_attack_cooldown_base / attack_cooldown).pad_decimals(2)

@@ -25,12 +25,17 @@ var enemy_objects:Array[PackedScene]=[]
 @export
 var enemy_object_hardnesses:Array[int]=[]
 @export
+var enemy_object_weights:Array[int]=[]
+var enemy_object_total_weight: int = 0
+@export
 var neutral_room_objects:Array[PackedScene]=[]
 
+@export var enemy_health_base: int = 25
+
 @export
-var max_neutral_objects_per_room:int=3
+var max_neutral_objects_per_room:int=2
 @export
-var hardness_per_room:int=5 #how much 'total hardness' goes up per room
+var hardness_per_room:int=3 #how much 'total hardness' goes up per room
 
 @export
 var room_num_label:Label=null
@@ -70,11 +75,32 @@ func populate_room(new_room:Node):
     if rooms_reached>=0:
         # neutral objects
         for i in range(Util.rand_range(0,max_neutral_objects_per_room)):
-            var obj = neutral_room_objects[Util.rand_range(0,len(neutral_room_objects))].instantiate()
+            var j = Util.rand_range(1, len(neutral_room_objects))
+            var obj = neutral_room_objects[j].instantiate()
+            obj.position = Vector2(Util.rand_range_float(-350,350), Util.rand_range_float(-20,280))
+            new_room.add_child(obj)
+
+        var hive_pity_roll = Util.rand_range_float(0, 1) > (float(bm.num_bees) / (float(bm.STARTING_NUM_BEES) / 2))
+        if hive_pity_roll:
+            var obj = neutral_room_objects[0].instantiate()
             obj.position = Vector2(Util.rand_range_float(-350,350), Util.rand_range_float(-20,280))
             new_room.add_child(obj)
 
     var room_hardness := (rooms_reached+1)*hardness_per_room
+    var hardness: int = 0
+    var enemy_health: float = min((bm.average_damage / 5.0) * enemy_health_base, enemy_health_base)
+    enemy_health *= min((bm._attack_cooldown_base / bm.attack_cooldown) / 2.0, 1.0)
+    enemy_health *= Util.rand_range_float(0.8, 1.2)
+    while hardness < room_hardness:
+        var i = Util.weighted_random_choice(enemy_object_weights,enemy_object_total_weight)
+        var obj_hardness = enemy_object_hardnesses[i]
+        if hardness + obj_hardness > room_hardness:
+            continue
+        hardness += obj_hardness
+        var obj = enemy_objects[i].instantiate()
+        obj.health = int(enemy_health)
+        obj.position = Vector2(Util.rand_range_float(-350,350), Util.rand_range_float(-20,280))
+        new_room.add_child(obj)
 
     # Choose a random screen colour
     next_color = Color.from_hsv(randf(),randf()*0.1+0.05,1)
@@ -148,3 +174,6 @@ func _ready():
     cm = get_tree().get_first_node_in_group("CanvasModulate")
     load_next_room()
     finish_transition_to_next_room() # skip transition
+
+    for w in enemy_object_weights:
+        enemy_object_total_weight+=w

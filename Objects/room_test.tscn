@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://do0tf23x6jrxe"]
+[gd_scene load_steps=8 format=3 uid="uid://do0tf23x6jrxe"]
 
 [ext_resource type="PackedScene" uid="uid://liwkplx5rlx8" path="res://Objects/room.tscn" id="1_piqu5"]
 [ext_resource type="Script" path="res://Objects/Keyhole.gd" id="2_yn80g"]
@@ -56,7 +56,7 @@ enemy_type = 4
 [node name="Enemy5" parent="." index="13" instance=ExtResource("5_c11xl")]
 position = Vector2(-125, -47)
 
-[node name="][pl_,_~" parent="." index="15" instance=ExtResource("6_y3lfb")]
+[node name="AcidBeeSwarm" parent="." index="14" instance=ExtResource("6_y3lfb")]
 
 [connection signal="area_entered" from="DOOR/Keyhole" to="DOOR/Keyhole" method="_on_area_entered"]
 [connection signal="body_entered" from="DOOR/Keyhole" to="DOOR/Keyhole" method="_on_body_entered"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bhdrhis6m7hms"
+path="res://.godot/imported/acid music 2 - vox 5.wav.ogg-fa77b33c2d8817e7004bd29fddd257eb.oggvorbisstr"
+
+[deps]
+
+source_file="res://Music/ogg/acid music 2 - vox 5.wav.ogg"
+dest_files=["res://.godot/imported/acid music 2 - vox 5.wav.ogg-fa77b33c2d8817e7004bd29fddd257eb.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

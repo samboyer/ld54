@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://5cg04rlgoscx"
+path="res://.godot/imported/acid music 2 - crashes.wav.ogg-868090a6f9ca7e173ec5b43167c2bf5c.oggvorbisstr"
+
+[deps]
+
+source_file="res://Music/ogg/acid music 2 - crashes.wav.ogg"
+dest_files=["res://.godot/imported/acid music 2 - crashes.wav.ogg-868090a6f9ca7e173ec5b43167c2bf5c.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

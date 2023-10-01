@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://m67jqq47nbkh"
+path="res://.godot/imported/acid music 2 - clap 1.wav.ogg-202ec6e984f63a333a2821fb449052be.oggvorbisstr"
+
+[deps]
+
+source_file="res://Music/ogg/acid music 2 - clap 1.wav.ogg"
+dest_files=["res://.godot/imported/acid music 2 - clap 1.wav.ogg-202ec6e984f63a333a2821fb449052be.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

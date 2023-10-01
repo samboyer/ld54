@@ -7,6 +7,7 @@ extends Targetable
 @export var charge_speed: float = 0.3
 @export var cooldown_time: float = 2.0
 @export var jitter: float = 0.5
+@export var powerup_chance: float = 0.2
 enum EnemyType { BASE, SHY, STRAFE, STILL, GO_FAST }
 @export var enemy_type: EnemyType = EnemyType.BASE
 
@@ -37,6 +38,7 @@ var electricity_on: bool = false
 var _electricity_cooldown: float = 0.0
 
 @onready var bulletObj = preload("res://Objects/Bullet.tscn")
+@onready var powerup = preload("res://Objects/Powerup.tscn")
 
 var bm: BeesManager
 
@@ -63,10 +65,8 @@ func _ready():
 
     super()
 
-var im_dead :=false
-
 func on_death():
-    im_dead = true
+    dead = true
     Util.num_enemies_killed +=1
     $Sprite2D.visible = false
     $Gun.visible = false
@@ -76,11 +76,16 @@ func on_death():
     # if all other enemies are dead, spawn a key at this position
     var all_dead := true
     for e in get_tree().get_nodes_in_group('enemy'):
-        all_dead = all_dead and e.im_dead
+        all_dead = all_dead and e.dead
     if all_dead:
         var key:=key_to_drop.instantiate()
         key.position = position
         get_parent().add_child(key)
+
+    if Util.rand_range_float(0,1) < powerup_chance:
+        var powerup_instance = powerup.instantiate()
+        powerup_instance.position = position
+        get_parent().add_child(powerup_instance)
 
 
 

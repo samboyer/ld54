@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://tgefwy60nf07"]
+
+[ext_resource type="PackedScene" uid="uid://cg6b37aslx1bm" path="res://Objects/AcidBeeSwarm.tscn" id="1_bkqa6"]
+
+[node name="AcidBeeSwarm" instance=ExtResource("1_bkqa6")]

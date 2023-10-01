@@ -4,9 +4,12 @@ extends Node2D
 @onready
 var acidBeeObj = preload("res://Objects/AcidBee.tscn")
 
+@export var key_to_drop: PackedScene
+
 @export var STARTING_NUM_BEES: int = 25
 @export var health: int = 50
 @export var speed: float = 50
+@export var powerup_chance: float = 0.2
 var num_bees: int
 var starting_health: int
 var centre: Node2D
@@ -14,11 +17,14 @@ var centre: Node2D
 var death_cooldown: float = 1.0
 var dead: bool = false
 
+@onready var powerup = preload("res://Objects/Powerup.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
     num_bees = STARTING_NUM_BEES
     centre = self.get_node("Centre")
+    centre.position = position
+    position = Vector2.ZERO
     centre.health = health
     starting_health = health
     for i in range(STARTING_NUM_BEES):
@@ -64,3 +70,17 @@ func on_death():
     for node in get_children():
         if node is AcidBee:
             node.kill()
+
+    # if all other enemies are dead, spawn a key at this position
+    var all_dead := true
+    for e in get_tree().get_nodes_in_group('enemy'):
+        all_dead = all_dead and e.dead
+    if all_dead:
+        var key := key_to_drop.instantiate()
+        key.position = centre.position
+        get_parent().add_child(key)
+
+    if Util.rand_range_float(0,1) < powerup_chance:
+        var powerup_instance = powerup.instantiate()
+        powerup_instance.position = centre.position
+        get_parent().add_child(powerup_instance)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cgrvo2f81b5j"]
+[gd_scene load_steps=59 format=3 uid="uid://cgrvo2f81b5j"]
 
 [ext_resource type="Script" path="res://Scripts/BeesManager.gd" id="1_86lkx"]
 [ext_resource type="PackedScene" uid="uid://b1d1r1dq3pp15" path="res://Objects/game_ui.tscn" id="1_rbdpo"]
@@ -12,16 +12,26 @@
 [ext_resource type="AudioStream" uid="uid://vatelb1typeq" path="res://SFX/room change.mp3" id="6_wwame"]
 [ext_resource type="Script" path="res://Scripts/RoomManager.gd" id="7_ucf1y"]
 [ext_resource type="Texture2D" uid="uid://bll4220pettl8" path="res://Textures/smoke.png" id="8_07fwu"]
-[ext_resource type="PackedScene" uid="uid://dup1w8why8n0u" path="res://Objects/Enemy.tscn" id="8_lpshd"]
 [ext_resource type="Texture2D" uid="uid://ddm0e8btwfyy2" path="res://Textures/reticule_inactive.png" id="8_oxnrr"]
+[ext_resource type="PackedScene" uid="uid://ch5oo0rv3r1u" path="res://Objects/Enemies/EnemyBase.tscn" id="8_q8j00"]
 [ext_resource type="PackedScene" uid="uid://rtqsqcxb4irh" path="res://Objects/Beehive.tscn" id="9_eu570"]
+[ext_resource type="PackedScene" uid="uid://6f4n7c5qnsij" path="res://Objects/Enemies/EnemyShy.tscn" id="9_q4ys7"]
 [ext_resource type="PackedScene" uid="uid://dfos2w0cct7s5" path="res://Objects/Barrel.tscn" id="10_7imrv"]
+[ext_resource type="PackedScene" uid="uid://c56fm7p4pjgyh" path="res://Objects/Enemies/EnemyStrafe.tscn" id="10_mo5nv"]
+[ext_resource type="PackedScene" uid="uid://bxhqdv1txftud" path="res://Objects/Enemies/EnemyFast.tscn" id="11_v4ubc"]
+[ext_resource type="PackedScene" uid="uid://de6qh4oc5w3rn" path="res://Objects/Enemies/EnemyGun.tscn" id="12_awkud"]
 [ext_resource type="Script" path="res://BeatMatchTest.gd" id="13_87bt5"]
 [ext_resource type="Texture2D" uid="uid://dj7xr7eryncht" path="res://Textures/powerup-0.png" id="13_jijss"]
+[ext_resource type="PackedScene" uid="uid://rf7ixemated8" path="res://Objects/Enemies/EnemyGunChase.tscn" id="13_yq652"]
 [ext_resource type="Script" path="res://MusicManager.gd" id="14_2goav"]
 [ext_resource type="AudioStream" uid="uid://dpqgqts2dgad7" path="res://SFX/bee_shoot.mp3" id="14_6ux7t"]
+[ext_resource type="PackedScene" uid="uid://fvu6jin0ybvr" path="res://Objects/Enemies/EnemyGunFast.tscn" id="14_u43cd"]
 [ext_resource type="AudioStream" uid="uid://b58lp30sjdh6f" path="res://SFX/bee_shoot2.mp3" id="15_72uug"]
 [ext_resource type="AudioStream" uid="uid://bt7lnj5sujd0n" path="res://SFX/game_over.mp3" id="15_enrrg"]
+[ext_resource type="PackedScene" uid="uid://crfo6r1nhye2r" path="res://Objects/Enemies/EnemyElectric.tscn" id="15_rn1ee"]
+[ext_resource type="PackedScene" uid="uid://dywj0mci5ha8s" path="res://Objects/Enemies/EnemyElectricFast.tscn" id="16_4xety"]
+[ext_resource type="PackedScene" uid="uid://tgefwy60nf07" path="res://Objects/Enemies/EnemyAcidBees.tscn" id="17_ip05k"]
+[ext_resource type="PackedScene" uid="uid://d4i1h78d1ife4" path="res://Objects/Enemies/EnemyAcidBeesFast.tscn" id="18_hb7im"]
 [ext_resource type="AudioStream" uid="uid://c1s6j4vsdbw6r" path="res://Music/initial_layers/acid music 2 - 808.wav.ogg" id="19_dwoly"]
 [ext_resource type="AudioStream" uid="uid://3wmm68l0rcrp" path="res://Music/initial_layers/acid music 2 - drums top 1.wav.ogg" id="20_qb6tm"]
 [ext_resource type="AudioStream" uid="uid://c3rtx6wuui8pj" path="res://Music/initial_layers/acid music 2 - drums top 2.wav.ogg" id="21_ag17h"]
@@ -137,8 +147,9 @@ script = ExtResource("7_ucf1y")
 ROOM_TRANSITION_TIME_SECS = 1.0
 room_starting = ExtResource("4_k6gwd")
 room_main = ExtResource("5_jk71d")
-enemy_objects = Array[PackedScene]([ExtResource("8_lpshd")])
-enemy_object_hardnesses = Array[int]([3])
+enemy_objects = Array[PackedScene]([ExtResource("8_q8j00"), ExtResource("9_q4ys7"), ExtResource("10_mo5nv"), ExtResource("11_v4ubc"), ExtResource("12_awkud"), ExtResource("13_yq652"), ExtResource("14_u43cd"), ExtResource("15_rn1ee"), ExtResource("16_4xety"), ExtResource("17_ip05k"), ExtResource("18_hb7im")])
+enemy_object_hardnesses = Array[int]([2, 1, 1, 3, 3, 4, 5, 3, 4, 3, 4])
+enemy_object_weights = Array[int]([2, 2, 2, 2, 4, 2, 2, 3, 2, 5, 3])
 neutral_room_objects = Array[PackedScene]([ExtResource("9_eu570"), ExtResource("10_7imrv"), ExtResource("10_7imrv")])
 room_num_label = NodePath("RoomTransitionLabel")
 room_swoosh_sfx = NodePath("AudioStreamPlayer")
@@ -164,7 +175,6 @@ stream = ExtResource("6_wwame")
 
 [node name="BeesManager" type="Node2D" parent="." node_paths=PackedStringArray("camera", "com_object", "bee_fire_sfx", "bee_die_sfx", "game_over_sfx", "game_over_panel", "mm", "rm", "label_gameover_rooms", "label_gameover_num_killed") groups=["BeesManager"]]
 script = ExtResource("1_86lkx")
-attack_cooldown = 0.5
 attack_jitter = 25.0
 camera = NodePath("../Camera2D")
 com_object = NodePath("centre_of_mass")

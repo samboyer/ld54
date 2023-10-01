@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnxolyy6vp8uo"]
+[gd_scene load_steps=3 format=3 uid="uid://crfo6r1nhye2r"]
 
 [ext_resource type="PackedScene" uid="uid://dup1w8why8n0u" path="res://Objects/Enemy.tscn" id="1_3uu01"]
 [ext_resource type="Texture2D" uid="uid://bxm2m7j4eu4gx" path="res://Textures/enemy_electric.png" id="2_jvc1j"]
@@ -6,7 +6,10 @@
 [node name="Enemy" instance=ExtResource("1_3uu01")]
 electricity = true
 sprite_base = ExtResource("2_jvc1j")
+sprite_shy = ExtResource("2_jvc1j")
+sprite_strafe = ExtResource("2_jvc1j")
 sprite_still = ExtResource("2_jvc1j")
+sprite_go_fast = ExtResource("2_jvc1j")
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_jvc1j")

@@ -3,7 +3,7 @@ extends Targetable
 
 @export var contents: PackedScene = null
 
-var powerup = preload("res://Objects/Powerup.tscn")
+@onready var powerup = preload("res://Objects/Powerup.tscn")
 
 func _ready():
     super()

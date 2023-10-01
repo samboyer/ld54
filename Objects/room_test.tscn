@@ -1,11 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://do0tf23x6jrxe"]
+[gd_scene load_steps=5 format=3 uid="uid://do0tf23x6jrxe"]
 
 [ext_resource type="PackedScene" uid="uid://liwkplx5rlx8" path="res://Objects/room.tscn" id="1_piqu5"]
 [ext_resource type="Script" path="res://Objects/Keyhole.gd" id="2_yn80g"]
 [ext_resource type="Texture2D" uid="uid://da4wenbvxckce" path="res://Textures/keyhole.png" id="3_058ky"]
-[ext_resource type="PackedScene" uid="uid://dnxolyy6vp8uo" path="res://Objects/enemy_electric.tscn" id="5_c11xl"]
-[ext_resource type="PackedScene" uid="uid://cg6b37aslx1bm" path="res://Objects/AcidBeeSwarm.tscn" id="6_y3lfb"]
-[ext_resource type="PackedScene" uid="uid://dup1w8why8n0u" path="res://Objects/Enemy.tscn" id="7_hl4q4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kl8r7"]
 size = Vector2(20, 32)
@@ -29,31 +26,6 @@ texture = ExtResource("3_058ky")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DOOR/Keyhole" index="1"]
 position = Vector2(2.08165e-12, 2.08165e-12)
 shape = SubResource("RectangleShape2D_kl8r7")
-
-[node name="Enemy" parent="." index="8" instance=ExtResource("7_hl4q4")]
-position = Vector2(200, 89)
-
-[node name="Enemy2" parent="." index="9" instance=ExtResource("7_hl4q4")]
-position = Vector2(-109, 191)
-enemy_type = 1
-
-[node name="Enemy3" parent="." index="10" instance=ExtResource("7_hl4q4")]
-position = Vector2(58, 54)
-enemy_type = 2
-
-[node name="Enemy4" parent="." index="11" instance=ExtResource("7_hl4q4")]
-position = Vector2(66, 197)
-enemy_type = 2
-gun = true
-
-[node name="Enemy6" parent="." index="12" instance=ExtResource("7_hl4q4")]
-position = Vector2(264, -26)
-enemy_type = 4
-
-[node name="Enemy5" parent="." index="13" instance=ExtResource("5_c11xl")]
-position = Vector2(-125, -47)
-
-[node name="][pl_,_~" parent="." index="15" instance=ExtResource("6_y3lfb")]
 
 [connection signal="area_entered" from="DOOR/Keyhole" to="DOOR/Keyhole" method="_on_area_entered"]
 [connection signal="body_entered" from="DOOR/Keyhole" to="DOOR/Keyhole" method="_on_body_entered"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4i1h78d1ife4"]
+
+[ext_resource type="PackedScene" uid="uid://cg6b37aslx1bm" path="res://Objects/AcidBeeSwarm.tscn" id="1_tdcc2"]
+
+[node name="AcidBeeSwarm" instance=ExtResource("1_tdcc2")]
+speed = 80.0

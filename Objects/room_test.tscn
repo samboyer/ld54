@@ -17,24 +17,28 @@ size = Vector2(109.375, 46.5)
 
 [node name="ROOM" instance=ExtResource("1_piqu5")]
 
-[node name="Keyhole" type="Area2D" parent="." index="8"]
-position = Vector2(300, -122)
+[node name="RoomBg1" parent="." index="0"]
+z_index = -998
+
+[node name="Keyhole" type="Area2D" parent="DOOR" index="1"]
+z_index = -999
+position = Vector2(9, -122)
 scale = Vector2(1.5, 1.5)
 collision_layer = 16
 collision_mask = 16
 script = ExtResource("2_yn80g")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D2" type="Sprite2D" parent="Keyhole" index="0"]
+[node name="Sprite2D2" type="Sprite2D" parent="DOOR/Keyhole" index="0"]
 z_index = -2
 scale = Vector2(2, 2)
 texture = ExtResource("3_058ky")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Keyhole" index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DOOR/Keyhole" index="1"]
 position = Vector2(2.08165e-12, 2.08165e-12)
 shape = SubResource("RectangleShape2D_kl8r7")
 
-[node name="Key" type="Area2D" parent="." index="9"]
+[node name="Key" type="Area2D" parent="." index="8"]
 position = Vector2(-243, 108)
 collision_layer = 17
 collision_mask = 18
@@ -50,21 +54,21 @@ texture = ExtResource("5_t7neb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Key" index="1"]
 shape = SubResource("RectangleShape2D_lufd4")
 
-[node name="Enemy" parent="." index="10" instance=ExtResource("7_hl4q4")]
+[node name="Enemy" parent="." index="9" instance=ExtResource("7_hl4q4")]
 position = Vector2(200, 89)
 
-[node name="Enemy2" parent="." index="11" instance=ExtResource("7_hl4q4")]
+[node name="Enemy2" parent="." index="10" instance=ExtResource("7_hl4q4")]
 position = Vector2(-109, 191)
 enemy_type = 1
 
-[node name="Enemy3" parent="." index="12" instance=ExtResource("7_hl4q4")]
+[node name="Enemy3" parent="." index="11" instance=ExtResource("7_hl4q4")]
 position = Vector2(58, 54)
 enemy_type = 2
 
-[node name="Barrel" parent="." index="13" instance=ExtResource("8_cu8jk")]
+[node name="Barrel" parent="." index="12" instance=ExtResource("8_cu8jk")]
 position = Vector2(-102, 30)
 
-[connection signal="area_entered" from="Keyhole" to="Keyhole" method="_on_area_entered"]
-[connection signal="body_entered" from="Keyhole" to="Keyhole" method="_on_body_entered"]
+[connection signal="area_entered" from="DOOR/Keyhole" to="DOOR/Keyhole" method="_on_area_entered"]
+[connection signal="body_entered" from="DOOR/Keyhole" to="DOOR/Keyhole" method="_on_body_entered"]
 [connection signal="mouse_entered" from="Key" to="Key" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Key" to="Key" method="_on_mouse_exited"]

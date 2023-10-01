@@ -8,6 +8,8 @@ var next_room:Node2D = null
 @export
 var ROOM_TRANSITION_TIME_SECS:= 0.5
 @export
+var TEXT_STAY_ON_TIME:= 2.0
+@export
 var SCREEN_HEIGHT:= 600
 
 @export
@@ -24,6 +26,8 @@ var room_num_label:Label=null
 var room_swoosh_sfx:AudioStreamPlayer=null
 @export
 var bm:BeesManager=null
+@export
+var mm:MusicManager=null
 
 var cm:CanvasModulate=null
 var current_color = Color(1,1,1,1)
@@ -64,6 +68,8 @@ func start_transition_to_next_room():
 		room_num_label.add_theme_font_size_override("font", 400)
 	room_num_label.visible=true
 	room_swoosh_sfx.play()
+	mm.enable_next_layer()
+	text_t =0.0
 
 func finish_transition_to_next_room():
 	room_transitioning=false
@@ -77,10 +83,18 @@ func finish_transition_to_next_room():
 	for b in get_tree().get_nodes_in_group("bees"):
 		b.position = Vector2(0,SCREEN_HEIGHT/2-16)
 	bm.visible=true
+
+
+var text_t := 1.0;
+func finish_label():
 	room_num_label.visible=false
 
 
 func _process(delta):
+	text_t+=delta/TEXT_STAY_ON_TIME
+	if text_t>=1:
+		finish_label()
+
 	if room_transitioning:
 		room_transition_t+=delta/ROOM_TRANSITION_TIME_SECS
 		# apply room movement
@@ -89,6 +103,8 @@ func _process(delta):
 			current_room.position = Vector2(0,SCREEN_HEIGHT*t)
 		next_room.position = Vector2(0,SCREEN_HEIGHT*(t-1))
 		cm.color = lerp(current_color,next_color,t)
+		AudioServer.set_bus_volume_db(1, lerp(-3.0,0.0,room_transition_t)) #linear
+		music_lowpass.cutoff_hz = lerp(2000,20000,room_transition_t) #linear
 		if room_transition_t>=1:
 			finish_transition_to_next_room()
 
@@ -96,7 +112,11 @@ func make_and_transition_to_room():
 	load_next_room()
 	start_transition_to_next_room()
 
+
+var music_lowpass:AudioEffectLowPassFilter=null
+
 func _ready():
+	music_lowpass=AudioServer.get_bus_effect(1,0)
 	cm = get_tree().get_first_node_in_group("CanvasModulate")
 	load_next_room()
 	finish_transition_to_next_room() # skip transition

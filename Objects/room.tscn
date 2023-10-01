@@ -19,7 +19,7 @@ size = Vector2(804, 41)
 size = Vector2(600, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ft6iw"]
-size = Vector2(804, 229)
+size = Vector2(804, 121.5)
 
 [node name="ROOM" type="Node2D"]
 
@@ -35,7 +35,7 @@ scale = Vector2(4, 4)
 texture = ExtResource("2_mxec2")
 
 [node name="next level area" type="Area2D" parent="."]
-position = Vector2(31, -134)
+position = Vector2(29, -220)
 collision_layer = 0
 collision_mask = 8
 
@@ -43,6 +43,7 @@ collision_mask = 8
 shape = SubResource("RectangleShape2D_otlhh")
 
 [node name="DOOR" type="Node2D" parent="." node_paths=PackedStringArray("door_rumble_sfx", "door_slam_sfx") groups=["door"]]
+position = Vector2(0, -79)
 script = ExtResource("3_42c7e")
 DOOR_MOVE_CAMERA_SHAKE = 10.0
 DOOR_FINISH_CAMERA_SHAKE = 25.0
@@ -60,16 +61,17 @@ stream = ExtResource("5_6foug")
 
 [node name="slam (and welcome to the jam)" type="AudioStreamPlayer" parent="DOOR"]
 stream = ExtResource("6_eetax")
+volume_db = -3.0
 
 [node name="RoomBgDoor" type="Sprite2D" parent="."]
 z_index = -1010
-position = Vector2(12, -122)
+position = Vector2(12, -201)
 scale = Vector2(2, 2)
 texture = ExtResource("3_d32jj")
 
 [node name="RoomBgDoor2" type="Sprite2D" parent="."]
 z_index = -1001
-position = Vector2(6, -117)
+position = Vector2(6, -196)
 scale = Vector2(2, 2)
 texture = ExtResource("6_dbn27")
 
@@ -99,7 +101,7 @@ collision_layer = 68
 collision_mask = 64
 
 [node name="hwall" type="CollisionShape2D" parent="Collision for Enemies"]
-position = Vector2(3, -183.5)
+position = Vector2(3, -202)
 shape = SubResource("RectangleShape2D_ft6iw")
 
 [node name="hwall2" type="CollisionShape2D" parent="Collision for Enemies"]
@@ -117,3 +119,4 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_n6f7x")
 
 [connection signal="area_entered" from="next level area" to="DOOR" method="_on_next_level_area_area_entered"]
+[connection signal="area_exited" from="next level area" to="DOOR" method="_on_next_level_area_area_exited"]

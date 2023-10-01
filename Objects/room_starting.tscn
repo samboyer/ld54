@@ -4,6 +4,21 @@
 
 [node name="ROOM" instance=ExtResource("1_phdt3")]
 
+[node name="next level area" parent="." index="2"]
+position = Vector2(30, -133)
+
+[node name="CollisionShape2D" parent="next level area" index="0"]
+position = Vector2(-6, -85)
+
 [node name="DOOR" parent="." index="3"]
+position = Vector2(0, -78)
 should_auto_open = true
-auto_open_time = 5.0
+
+[node name="RoomBgDoor" parent="." index="4"]
+position = Vector2(12, -200)
+
+[node name="RoomBgDoor2" parent="." index="5"]
+position = Vector2(6, -195)
+
+[node name="hwall" parent="Collision for Enemies" index="0"]
+position = Vector2(3, -219)

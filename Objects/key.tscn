@@ -25,7 +25,7 @@ texture = ExtResource("2_uch52")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_lufd4")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="KeySpawnSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_73wv4")
 volume_db = -3.0
 autoplay = true

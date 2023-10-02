@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://ct3upjefmfixo"]
 
-[ext_resource type="Script" path="res://Scripts/Bee.gd" id="1_vujc5"]
-[ext_resource type="Texture2D" uid="uid://dk0xiq56t015x" path="res://Textures/bee.png" id="2_gjuv5"]
-[ext_resource type="Texture2D" uid="uid://dl1kvol6fnvf6" path="res://Textures/1x1_white.png" id="2_i507m"]
+[ext_resource type="Script" path="res://Scripts/Bee.gd" id="1_3172w"]
+[ext_resource type="Texture2D" uid="uid://dl1kvol6fnvf6" path="res://Textures/1x1_white.png" id="2_vik7h"]
+[ext_resource type="Texture2D" uid="uid://dk0xiq56t015x" path="res://Textures/bee.png" id="3_ii2q8"]
 
 [sub_resource type="Curve" id="Curve_f1sak"]
 min_value = 2.13163e-14
@@ -19,7 +19,7 @@ colors = PackedColorArray(1, 1, 1, 1, 0.319873, 0.319873, 0.319873, 1, 0, 0, 0, 
 position = Vector2(0, 1)
 collision_layer = 5
 collision_mask = 2
-script = ExtResource("1_vujc5")
+script = ExtResource("1_3172w")
 metadata/_edit_group_ = true
 
 [node name="Particles" type="CPUParticles2D" parent="."]
@@ -27,7 +27,7 @@ emitting = false
 amount = 100
 one_shot = true
 explosiveness = 1.0
-texture = ExtResource("2_i507m")
+texture = ExtResource("2_vik7h")
 emission_shape = 3
 emission_rect_extents = Vector2(30, 30)
 spread = 180.0
@@ -47,5 +47,5 @@ shape = SubResource("CircleShape2D_n6mr5")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0.25, -0.25)
 scale = Vector2(2, 1.826)
-texture = ExtResource("2_gjuv5")
+texture = ExtResource("3_ii2q8")
 offset = Vector2(2.08165e-12, 2.08165e-12)

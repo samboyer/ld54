@@ -40,6 +40,7 @@ var hardness_per_room:int=4 #how much 'total hardness' goes up per room
 var all_one_enemy_room_chance: float = 0.3
 @export
 var max_enemies_per_room: int = 20
+var last_room_pity_room: bool = true
 
 @export
 var room_num_label:Label=null
@@ -65,8 +66,13 @@ func load_next_room():
     else:
         new_room=room_main.instantiate()
 
-    if rooms_reached >= 0:
+    if rooms_reached >= 1:
         populate_room(new_room)
+    elif rooms_reached == 0:
+        var obj = enemy_objects[0].instantiate()
+        obj.health = enemy_health_base
+        obj.position = Vector2(Util.rand_range_float(-350,350), Util.rand_range_float(-20,280))
+        new_room.add_child(obj)
 
     next_room = new_room
     new_room.position = Vector2(0, SCREEN_HEIGHT)
@@ -77,7 +83,9 @@ func load_next_room():
 
 
 func populate_room(new_room:Node):
-    var hive_pity_roll = Util.rand_range_float(0, 1) > (float(bm.num_bees) / (float(bm.STARTING_NUM_BEES) * 0.6))
+    var hive_pity_roll = Util.rand_range_float(0, 1) > max((float(bm.num_bees) / (float(bm.STARTING_NUM_BEES) * 0.6)), 0.4)
+    hive_pity_roll = hive_pity_roll and not last_room_pity_room
+    last_room_pity_room = hive_pity_roll
 
     # neutral objects
     var num_neutral := 0
@@ -107,7 +115,7 @@ func populate_room(new_room:Node):
         var room_hardness := (rooms_reached+1)*hardness_per_room
         var hardness: int = 0
         var enemy_health: float = min((bm.average_damage / 5.0) * enemy_health_base, enemy_health_base)
-        enemy_health *= min((bm._attack_cooldown_base / bm.attack_cooldown) / 2.0, 1.0)
+        enemy_health *= min((bm._attack_cooldown_base / bm.attack_cooldown), 1.0)
 
         if Util.rand_range_float(0, 1) < all_one_enemy_room_chance:
             var i = Util.weighted_random_choice(enemy_object_weights,enemy_object_total_weight)

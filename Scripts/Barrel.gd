@@ -11,6 +11,7 @@ func _ready():
 func on_death():
     $Sprite2D.visible = false
     $Particles.emitting = true
+    $AudioStreamPlayer.play()
 
     var powerup_instance = powerup.instantiate()
     powerup_instance.position = position

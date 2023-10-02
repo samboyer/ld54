@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://y681emgvbdsj"]
+[gd_scene load_steps=5 format=3 uid="uid://y681emgvbdsj"]
 
 [ext_resource type="Script" path="res://Objects/Powerup.gd" id="1_oxyxo"]
 [ext_resource type="Texture2D" uid="uid://dj7xr7eryncht" path="res://Textures/powerup-0.png" id="1_tc0cl"]
+[ext_resource type="AudioStream" uid="uid://cadm4ecxxhpxu" path="res://SFX/powerUp.wav" id="3_pv03e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_arv0g"]
 size = Vector2(56, 56)
@@ -17,5 +18,9 @@ texture = ExtResource("1_tc0cl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_arv0g")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_pv03e")
+volume_db = -12.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -42,3 +42,4 @@ func _on_area_entered(_area: Area2D):
     if not collected:
         bm.powerup(powerup_type)
         collected = true
+        $AudioStreamPlayer.play()

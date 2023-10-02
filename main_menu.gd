@@ -5,6 +5,9 @@ var main_scene:PackedScene = null
 
 @export var is_main_menu: bool = false
 
+var audio_countdown: float = 0.3
+var audio_playing: bool = false
+
 var intro_countdown: float = 0.8
 var intro_playing: bool = false
 
@@ -20,6 +23,11 @@ func _ready():
 
 func _process(delta):
     if is_main_menu:
+        audio_countdown = max(0, audio_countdown - delta)
+        if audio_countdown <= 0 and !audio_playing:
+            audio_playing = true
+            get_node("AudioStreamPlayer").play()
+
         intro_countdown = max(0, intro_countdown - delta)
         if intro_countdown <= 0 and !intro_playing:
             intro_playing = true

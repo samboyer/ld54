@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dup1w8why8n0u"]
+[gd_scene load_steps=14 format=3 uid="uid://dup1w8why8n0u"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_3fn8u"]
 [ext_resource type="Texture2D" uid="uid://cikfsviepaxhu" path="res://Textures/enemy.png" id="2_8mqhx"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dt13wxjfd6hxn" path="res://Objects/key.tscn" id="8_erdrk"]
 [ext_resource type="Texture2D" uid="uid://b8djx5jt6obth" path="res://Textures/lightning.png" id="9_p423c"]
 [ext_resource type="Texture2D" uid="uid://26ma8fpvn242" path="res://Textures/acid splat.png" id="10_lr82k"]
+[ext_resource type="AudioStream" uid="uid://b2m6yretnfxpm" path="res://SFX/enemy_death.wav" id="11_ycxov"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_560yg"]
 radius = 29.0689
@@ -29,6 +30,7 @@ sprite_strafe = ExtResource("4_uslow")
 sprite_still = ExtResource("2_8mqhx")
 sprite_go_fast = ExtResource("5_nfq5w")
 health = 20
+death_cooldown = 10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_8mqhx")
@@ -82,7 +84,7 @@ angle_max = 20.0
 scale_amount_min = 0.5
 scale_amount_curve = SubResource("Curve_ne5pm")
 
-[node name="ParticlesAcidTrail" type="CPUParticles2D" parent="."]
+[node name="ParticlesAcidTrail" type="CPUParticles2D" parent="." groups=["acid_trail"]]
 z_index = -1
 position = Vector2(1, 17)
 amount = 300
@@ -95,6 +97,10 @@ angle_max = 360.0
 scale_amount_min = 0.5
 scale_amount_max = 1.5
 scale_amount_curve = SubResource("Curve_ne5pm")
-color = Color(0.694118, 1, 0.541176, 1)
+color = Color(0.584314, 0.870588, 0.443137, 1)
+
+[node name="EnemyDeathSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_ycxov")
+volume_db = -6.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

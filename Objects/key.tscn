@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dt13wxjfd6hxn"]
+[gd_scene load_steps=7 format=3 uid="uid://dt13wxjfd6hxn"]
 
 [ext_resource type="Script" path="res://Scripts/Key.gd" id="1_vko2u"]
 [ext_resource type="Texture2D" uid="uid://bfx2onk2tucbc" path="res://Textures/key.png" id="2_uch52"]
 [ext_resource type="Texture2D" uid="uid://c15csurjju7bp" path="res://Textures/key_highlihgt.png" id="3_tro8k"]
+[ext_resource type="AudioStream" uid="uid://qicb8hw0uiyk" path="res://SFX/key_spawn.wav" id="4_73wv4"]
+[ext_resource type="AudioStream" uid="uid://cidfy82ihj372" path="res://SFX/key_pickup.mp3" id="5_tx7uq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lufd4"]
 size = Vector2(109.375, 46.5)
@@ -22,6 +24,15 @@ texture = ExtResource("2_uch52")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_lufd4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_73wv4")
+volume_db = -3.0
+autoplay = true
+
+[node name="KeyPickupSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_tx7uq")
+volume_db = -3.0
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

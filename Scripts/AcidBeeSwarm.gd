@@ -70,6 +70,7 @@ func on_death():
     for node in get_children():
         if node is AcidBee:
             node.kill()
+    $EnemyDeathSFX.play()
 
     # if all other enemies are dead, spawn a key at this position
     var all_dead := true

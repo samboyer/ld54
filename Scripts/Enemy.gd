@@ -72,6 +72,7 @@ func on_death():
     $Gun.visible = false
     $Particles.emitting = true
     $CollisionShape2D.disabled = true
+    $EnemyDeathSFX.play()
 
     # if all other enemies are dead, spawn a key at this position
     var all_dead := true
@@ -173,8 +174,11 @@ func _process(delta):
 func damage(amount: int, source: Bee):
     if electricity_on:
         source.kill(not bm.invulnerable)
-
-    super(amount, source)
+        super(0, source)
+        return 0
+    else:
+        super(amount, source)
+        return amount
 
 
 func _on_area_2d_body_entered(body: Node2D):

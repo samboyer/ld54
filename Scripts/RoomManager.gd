@@ -160,6 +160,8 @@ func start_transition_to_next_room():
     room_swoosh_sfx.play()
     mm.enable_next_layer()
     text_t =0.0
+    for particles in get_tree().get_nodes_in_group("acid_trail"):
+        particles.emitting=false
 
 func finish_transition_to_next_room():
     room_transitioning=false
@@ -174,6 +176,8 @@ func finish_transition_to_next_room():
         b.position = Vector2(0,SCREEN_HEIGHT/2-16)
     bm.visible=true
     bm._iframes = bm.iframes
+    for particles in get_tree().get_nodes_in_group("acid_trail"):
+        particles.emitting=true
 
 
 var text_t := 1.0;

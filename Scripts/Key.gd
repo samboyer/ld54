@@ -14,6 +14,9 @@ var key_picked_up := false
 # Called when the node enters the scene tree for the first time.
 func _ready():
     bm = get_tree().get_first_node_in_group("BeesManager")
+    print('i am key')
+    get_node("KeySpawnSFX").play()
+
 
 var key_bee_threshold = 100;
 
@@ -28,6 +31,7 @@ func _input(event):
             position = Vector2(0,0)
             get_child(0).set_texture(tex_normal)
             key_picked_up = true
+            get_node("KeyPickupSFX").play()
 
         else:
             print('BEE NOT in RANGE')
